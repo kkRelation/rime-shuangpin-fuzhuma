@@ -1,0 +1,10 @@
+customization:
+  distribution_code_name: hamster
+  distribution_version: ""
+  generator: "Rime::SwitcherSettings"
+  modified_time: "Wed Mar  4 00:32:15 2026"
+  rime_version: 1.16.1
+patch:
+  schema_list:
+    - {schema: moqi_single_xh}
+    - {schema: moqi_wan_flypy}

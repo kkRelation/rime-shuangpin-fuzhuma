@@ -1,0 +1,24 @@
+# Rime table
+#@/db_name	user.custom.dict
+#@/db_type	tabledb
+#@/rime_version	1.13.1
+#@/tick	59
+嘟	du;ke;ke;kd;ob;rl;dt;kf;ke;	6
+官	guan;bl;bk;bg,bk;id;jr;wk;pn;ga;	2
+官鹤	guan;bl;bk;bg,bk;id;jr;wk;pn;ga; he;bn;dn;nv;ic;om;wx;pw;dn;	14
+浩	hao;dk;dk;dg;ko;er;kd;it;dk;	2
+嚎	hao;ku;ku;kh;oh;ro;dj;ky;kh;	2
+好	hao;nz;nz;nz;ya;vd;bh;vb;nz;	12
+好嘟	hao;nz;nz;nz;ya;vd;bh;vb;nz; du;ke;ke;kd;ob;rl;dt;kf;ke;	22
+简	jian;vo;vo;vj;nv;ha;ro;tu;vo;	2
+简单	jian;vo;vo;vj;nv;ha;ro;tu;vo; dan;bu;bl;ba,bd;fs;cj;hn;uj;ea;	6
+墨	mo;lt;ht;th,ht;ng;wg;pg;lf;ht;	4
+墨奇	mo;lt;ht;th,ht;ng;wg;pg;lf;ht; qi;dk;dk;dk;xj;kr;mz;ds;dk;	2
+墨奇万象	mo;lt;ht;th,ht;ng;wg;pg;lf;ht; qi;dk;dk;dk;xj;kr;mz;ds;dk; wan;av;ap;ag,ap;du;ms;fp;dn;ap; xiang;du;dn;du,pd,ua;gh;no;wx;qj;en;	10
+声	sheng;tu;up;um;gp;gh;gc;fn;up;	6
+声笔	sheng;tu;up;um;gp;gh;gc;fn;up; bi;vm;vm;vm;nr;hu;rv;tt;vm;	2
+声笔字	sheng;tu;up;um;gp;gh;gc;fn;up; bi;vm;vm;vm;nr;hu;rv;tt;vm; zi;bz;bz;bz;ia;jd;wh;pb;gz;	2
+万象	wan;av;ap;ag,ap;du;ms;fp;dn;ap; xiang;du;dn;du,pd,ua;gh;no;wx;qj;en;	0
+这	zhe;zw;zw;zw;jq;yk;vu;p,yp;zx;	20
+这么屌	zhe;zw;zw;zw;jq;yk;vu;p,yp;zx; me;ps;ps;ps;up;hi;tk;tc;pv; diao;uj;uj;ud;qy;sb;cr;nk;uj;	4
+字	zi;bz;bz;bz;ia;jd;wh;pb;gz;	0
