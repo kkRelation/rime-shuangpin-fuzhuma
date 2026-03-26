@@ -112,7 +112,7 @@ sort: by_weight
 八	ba;pn;pn;pd;ff;ho;hb;wt;pn;	5975
 巴	ba;sl;sl,vv;ag,kg,vg;tt;au;mb;cn;vv;	1461
 扒	ba;fb;fb;fb;jf;qc;uh;rw;fb;	2120
-拔	ba;fy;fd;fb,fy;jh;qe,qk;ui;rd;fy;	1982
+拔	ba;fy;fd;fb,fy;jh;qe,qk;ui;rd;fy;	2282
 罢	ba;sq;ss;sq;ap;wi;yk;lf;sv;	1874
 叭	ba;kb;kb;kb;of;rc,xc;dh;kw;kb;	1694
 爸	ba;fb;bb;fb;ft;cu;hm;wq;bb;	1593
@@ -571,7 +571,7 @@ sort: by_weight
 岑	cen;uv;ev;uj;pr;un;va;mw;sj;	94
 涔	cen;dv;dv;dc;kr;en;ka;im;dj;	9
 参	cen;sp;sp;sp;pu;ih;ke;cd;vp;	1
-曾	ceng;bo;bo;ob,bo;fv;ca;ho;ul;eo;	14219
+曾	ceng;bo;bo;ob,bo;fv;ca;ho;ul;eo;	10219
 层	ceng;uy;us;uy;qp;si;cb;nf;uv;	13168
 蹭	ceng;zo;zo;zc;gv;ra;po;kh;zo;	3988
 噌	ceng;ko;ko;kc;ov;ra;do;ku;ko;	327
@@ -2725,10 +2725,10 @@ sort: by_weight
 兼	jian;bb;bn;bd,bj,qd,qj;ff;tc;hc;uv;en;	4673
 建	jian;zy;zy;zy;rq;nq;bu;vf;za;	4058
 减	jian;dk;dk;dx;fh;ir;wd;ud;dg;	3981
-煎	jian;bh;bh;hq;fn;tf;hc;ue;ee;	3259
+煎	jian;bh,hb;bh;hq;fn;tf;hc;ue;ee;	3259
 捡	jian;fq;fa;fq,fa;jd;qm;uf;rw;fa;	3455
 箭	jian;vd;vd;vq;ni;hn;rp;tu;vd;	2892
-剪	jian;bd;bd;dq;fi;th;hp;ue;ed;	2748
+剪	jian;bd,db;bd;dq;fi;th;hp;ue;ed;	2748
 肩	jian;ho;ho;ho,oh;hl,ql;hb,ib;mv;yn;ho;	2474
 简	jian;vo;vo;vj;nv;ha;ro;tu;vo;	2140
 尖	jian;xd;xd;xd;ix;fk;ym;id;ad;	1277
@@ -4111,7 +4111,7 @@ sort: by_weight
 帽	mao;jo;jo;jm;ys;lu;rq;mh;jm;	1115
 锚	mao;jt;jt;jm;dw;ow;zq;qa;jt;	589
 贸	mao;pb;pr;bd,lb;um;ho;bo;qy;pr;	547
-矛	mao;yp;sp;sp,ap,vp;pu;nh;it;cb;vp;	438
+矛	mao;yp,sc;sp;sp,ap,vp;pu;nh;it;cb;vp;	438
 卯	mao;pe;pe;ep,em,me;ub;hl;bm;qt;pe;	304
 茅	mao;cm;cp;cm;zu;th;lt;ac;cm;	275
 貌	mao;ve;ve;ve,vm;uk;bu;mp;ee;pe;	254
@@ -8553,4 +8553,3 @@ sort: by_weight
 柞	zuo;mv;mv;mv;wu;ds;ew;st;lv;	9
 笮	zuo;vv;vv;vv;nu;hs;rw;tt;vv;	4
 岞	zuo;uv;ev;uv;pu;us,xs;vw;mt;sv;	0
-

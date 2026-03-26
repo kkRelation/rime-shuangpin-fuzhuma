@@ -53,6 +53,7 @@ switches_engine:
       - lua_translator@*date_translator    # 时间、日期、星期
       - lua_translator@*lunar              # 农历
       - lua_translator@*unicode            # Unicode
+      - lua_translator@*card_number
       - lua_translator@*number_translator  # 数字、金额大写
       - lua_translator@*calculator    # 计算器
       - punct_translator
@@ -88,7 +89,7 @@ switches_engine:
       - lua_filter@*pro_comment_format                #超级注释模块，支持错词错音提示、任意长度辅助码显示，支持个性化配置和关闭相应的功能，详情搜索pro_comment_format进行详细配置
       - lua_filter@*stick       #简码回显
       - lua_filter@*is_in_user_dict # 用户词典的词加上一个*
-      # - lua_filter@*moqi.jianma_show # 当用户用全码"womf"输入“我们”时，回显简码提示"wm"
+      - lua_filter@*moqi.jianma_show # 当用户用全码"womf"输入“我们”时，回显简码提示"wm"
       #- lua_filter@*long_word_filter                       # 长词优先（顺序要求：长词优先 > Emoji）
       # - lua_filter@*moran_debug_filter # debug
 
@@ -256,7 +257,7 @@ reverse:
     tags: [ reverse_moqima,radical_flypy,reverse_stroke,reverse_zrlf,reverse_cj]
     overwrite_comment: true
     # 可以改为全拼+音调+释义的码表
-    dictionary: moqi_big.extended # 提示码词表
+    dictionary: moqi_wan.extended # 提示码词表
   
 opencc_config:
   # 显示墨奇码拆分
@@ -335,6 +336,7 @@ guide:
       emojis: "^ae[a-z]*'?$" # "^ae.*$" 
       easy_en_simp: "^aw[a-z]*"
       jp_sela: "^aj[a-z]*"
+      card_number: "^C[0-9]+"              # 脚本将自动获取第 2 个字符 C 作为触发前缀
       unicode: "^U[a-f0-9]+"              # 脚本将自动获取第 2 个字符 U 作为触发前缀，响应 lua_translator@unicode，输出 Unicode 字符
       number: "^R[0-9]+[.]?[0-9]*"        # 脚本将自动获取第 2 个字符 R 作为触发前缀，响应 lua_translator@number_translator，数字金额大写
       gregorian_to_lunar: "^N[0-9]{1,8}"  # 脚本将自动获取第 2 个字符 N 作为触发前缀，响应 lua_translator@lunar，公历转农历，输入 N20240115 得到「二〇二三年腊月初五」
@@ -395,7 +397,7 @@ guide:
 big_char_and_user_dict:
   # 大字集
   big_char_set:
-    dictionary: moqi_big.extended
+    dictionary: moqi_wan.extended
     option_name: big_char_set
     initial_quality: -1 # 设置此翻译器出字优先级,-1为极低
     enable_completion: false
@@ -410,7 +412,7 @@ big_char_and_user_dict:
 
 
   user_dict_set:
-    dictionary: moqi.extended
+    dictionary: moqi_wan.extended
     initial_quality: 0
     enable_completion: false
     enable_sentence: false
@@ -426,7 +428,7 @@ big_char_and_user_dict:
   # 自定义词典加词(ac引导)
   add_user_dict:
     tag: add_user_dict
-    dictionary: moqi.extended
+    dictionary: moqi_wan.extended
     initial_quality: -1
     user_dict: user.custom.dict
   # ↓ 用户词典格式，tabledb（文本） 或 userdb （二进制）。
