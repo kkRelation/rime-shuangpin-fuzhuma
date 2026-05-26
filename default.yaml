@@ -1,7 +1,7 @@
 # Rime default settings
 # encoding: utf-8
 
-config_version: '0.50'
+config_version: "0.50"
 
 schema_list:
   - schema: moqi_wan_flypymo # 墨奇·小鹤+墨奇形 （推荐）
@@ -9,12 +9,11 @@ schema_list:
   - schema: moqi_wan_flypy # 墨奇·小鹤+鹤形 鹤形+鹤拼, 小鹤官方就只有8000字左右
   - schema: moqi_single_xh # 墨奇码·顶屏版·小鹤双拼，为了4码自动上屏 只收录了8000字
 
-
   # - schema: moqi_wan_zrm_hx # 墨奇·自然码+汉心码辅助码
   # - schema: moqi_wan_ms_wb # 墨奇·微软+五笔
   # - schema: moqi_wan_sogou # 墨奇·搜狗+墨奇形
   # - schema: moqi_wan_flypyhu # 墨奇·小鹤+虎形
-  
+
   # - schema: moqi_wan_jdh  # 墨奇·小鹤+简单鹤
   # - schema: moqi_wan_quanpin_moqi  # 墨奇·全拼+墨奇形
   # - schema: moqi_wan_abc_mo # 墨奇·智能abc双拼+墨奇
@@ -36,83 +35,83 @@ switcher:
     - ascii_punct
   fold_options: true
   abbreviate_options: true
-  option_list_separator: '／'
+  option_list_separator: "／"
 
 menu:
   page_size: 9 #候选项数
-  
+
 style:
   horizontal: false #横排为true
 
 punctuator:
   full_shape:
-    ' ' : { commit: '　' }
-    ',' : { commit: ， }
-    '.' : { commit: 。 }
-    '<' : [ 《, 〈, «, ‹ ]
-    '>' : [ 》, 〉, », › ]
-    '/' : [ ／, ÷ ]
-    '?' : { commit: ？ }
-    ';' : { commit: ； }
-    ':' : { commit: ： }
-    '''' : { pair: [ '‘', '’' ] }
-    '"' : { pair: [ '“', '”' ] }
-    '\' : [ 、, ＼ ]
-    '|' : [ ·, ｜, '§', '¦' ]
-    '`' : ｀
-    '~' : ～
-    '!' : { commit: ！ }
-    '@' : [ ＠, ☯ ]
-    '#' : [ ＃, ⌘ ]
-    '%' : [ ％, '°', '℃' ]
-    '$' : [ ￥, '$', '€', '£', '¥', '¢', '¤' ]
-    '^' : { commit: …… }
-    '&' : ＆
-    '*' : [ ＊, ·, ・, ×, ※, ❂ ]
-    '(' : （
-    ')' : ）
-    '-' : －
-    '_' : ——
-    '+' : ＋
-    '=' : ＝
-    '[' : [ 「, 【, 〔, ［ ]
-    ']' : [ 」, 】, 〕, ］ ]
-    '{' : [ 『, 〖, ｛ ]
-    '}' : [ 』, 〗, ｝ ]
+    " ": { commit: "　" }
+    ",": { commit: ， }
+    ".": { commit: 。 }
+    "<": [《, 〈, «, ‹]
+    ">": [》, 〉, », ›]
+    "/": [／, ÷]
+    "?": { commit: ？ }
+    ";": { commit: ； }
+    ":": { commit: ： }
+    "'": { pair: ["‘", "’"] }
+    '"': { pair: ["“", "”"] }
+    '\': [、, ＼]
+    "|": [·, ｜, "§", "¦"]
+    "`": ｀
+    "~": ～
+    "!": { commit: ！ }
+    "@": [＠, ☯]
+    "#": [＃, ⌘]
+    "%": [％, "°", "℃"]
+    "$": [￥, "$", "€", "£", "¥", "¢", "¤"]
+    "^": { commit: …… }
+    "&": ＆
+    "*": [＊, ·, ・, ×, ※, ❂]
+    "(": （
+    ")": ）
+    "-": －
+    "_": ——
+    "+": ＋
+    "=": ＝
+    "[": [「, 【, 〔, ［]
+    "]": [」, 】, 〕, ］]
+    "{": [『, 〖, ｛]
+    "}": [』, 〗, ｝]
   half_shape:
-    ',' : '，'
-    '.' : '。'
-    '<' : '《'
-    '>' : '》'
-    '/' : [ /, ÷ ]
-    '?' : '？'
-    ';' : '；'
-    ':' : '：'
-    '''' : { pair: [ '‘', '’' ] }
-    '"' : { pair: [ '“', '”' ] }
+    ",": "，"
+    ".": "。"
+    "<": "《"
+    ">": "》"
+    "/": [/, ÷]
+    "?": "？"
+    ";": "；"
+    ":": "："
+    "'": { pair: ["‘", "’"] }
+    '"': { pair: ["“", "”"] }
     # '"' : { commit: '“”' } # 直接输出一对引号
-    '\' : '、'
+    '\': "、"
     "|": ["·", "|", "｜", "§", "¦"]
-    '`' : '、'
-    '~' : '~'
-    '!' : '！'
-    '@' : '@'
-    '#' : '#'
-    '%' : '%'
-    '$' : '¥'
-    '^' : '……'
-    '&' : '&'
-    '*' : '*'
-    '(' : '（'
-    ')' : '）'
-    '-' : '-'
-    '_' : ——
-    '+' : '+'
-    '=' : '='
-    '[' : '【'
-    ']' : '】'
-    '{' : '「'
-    '}' : '」'
+    "`": "、"
+    "~": "~"
+    "!": "！"
+    "@": "@"
+    "#": "#"
+    "%": "%"
+    "$": "¥"
+    "^": "……"
+    "&": "&"
+    "*": "*"
+    "(": "（"
+    ")": "）"
+    "-": "-"
+    "_": ——
+    "+": "+"
+    "=": "="
+    "[": "【"
+    "]": "】"
+    "{": "「"
+    "}": "」"
 
 key_binder:
   bindings:
@@ -145,10 +144,10 @@ key_binder:
     # - { when: always, select: .next, accept: Control+Shift+exclam }             # 在最近的两个方案之间切换
     # - { when: always, toggle: ascii_mode, accept: Control+Shift+2 }             # 切换中英
     # - { when: always, toggle: ascii_mode, accept: Control+Shift+at }            # 切换中英
-    - { when: always, toggle: ascii_punct, accept: Control+Shift+3 }              # 切换中英标点
-    - { when: always, toggle: ascii_punct, accept: Control+Shift+numbersign }     # 切换中英标点
-    - { when: always, toggle: traditionalization, accept: Control+Shift+4 }       # 切换简繁
-    - { when: always, toggle: traditionalization, accept: Control+Shift+dollar }  # 切换简繁
+    - { when: always, toggle: ascii_punct, accept: Control+Shift+3 } # 切换中英标点
+    - { when: always, toggle: ascii_punct, accept: Control+Shift+numbersign } # 切换中英标点
+    - { when: always, toggle: traditionalization, accept: Control+Shift+4 } # 切换简繁
+    - { when: always, toggle: traditionalization, accept: Control+Shift+dollar } # 切换简繁
     # - { when: always, toggle: full_shape, accept: Control+Shift+5 }             # 切换全半角
     # - { when: always, toggle: full_shape, accept: Control+Shift+percent }       # 切换全半角
 
@@ -178,21 +177,21 @@ key_binder:
     # 将小键盘 0~9 . + - * / 映射到主键盘
     # 使计算器(V1+2*3)可使用小键盘输入
     # 数字金额大写的 Lua 如 R1234.5678 可使用小键盘输入
-    - {accept: KP_0, send: 0, when: composing}
-    - {accept: KP_1, send: 1, when: composing}
-    - {accept: KP_2, send: 2, when: composing}
-    - {accept: KP_3, send: 3, when: composing}
-    - {accept: KP_4, send: 4, when: composing}
-    - {accept: KP_5, send: 5, when: composing}
-    - {accept: KP_6, send: 6, when: composing}
-    - {accept: KP_7, send: 7, when: composing}
-    - {accept: KP_8, send: 8, when: composing}
-    - {accept: KP_9, send: 9, when: composing}
-    - {accept: KP_Decimal,  send: period  , when: composing}
-    - {accept: KP_Multiply, send: asterisk, when: composing}
-    - {accept: KP_Add,      send: plus,     when: composing}
-    - {accept: KP_Subtract, send: minus,    when: composing}
-    - {accept: KP_Divide,   send: slash,    when: composing}
+    - { accept: KP_0, send: 0, when: composing }
+    - { accept: KP_1, send: 1, when: composing }
+    - { accept: KP_2, send: 2, when: composing }
+    - { accept: KP_3, send: 3, when: composing }
+    - { accept: KP_4, send: 4, when: composing }
+    - { accept: KP_5, send: 5, when: composing }
+    - { accept: KP_6, send: 6, when: composing }
+    - { accept: KP_7, send: 7, when: composing }
+    - { accept: KP_8, send: 8, when: composing }
+    - { accept: KP_9, send: 9, when: composing }
+    - { accept: KP_Decimal, send: period, when: composing }
+    - { accept: KP_Multiply, send: asterisk, when: composing }
+    - { accept: KP_Add, send: plus, when: composing }
+    - { accept: KP_Subtract, send: minus, when: composing }
+    - { accept: KP_Divide, send: slash, when: composing }
 
 recognizer:
   patterns:
@@ -204,7 +203,7 @@ ascii_composer:
   good_old_caps_lock: true
   switch_key:
     Shift_L: commit_code
-    Shift_R: commit_code
+    Shift_R: commit_text
     Control_L: noop
     Control_R: noop
     Caps_Lock: clear

@@ -1,17 +1,13 @@
 __build_info:
   rime_version: 1.13.1
   timestamps:
-    default: 1749012324
-    default.custom: 1772526734
-    key_bindings: 1749012324
-    key_bindings.custom: 0
-    moqi: 1754065572
+    default: 1779557017
+    default.custom: 0
+    moqi: 1774557339
     moqi.custom: 0
     moqi_speller: 1754065572
     moqi_speller.custom: 0
-    moqi_wan_flypy.schema: 1754065572
-    punctuation: 1749012324
-    punctuation.custom: 0
+    moqi_wan_flypy.schema: 1774557339
     symbols_caps_v: 1754065572
     symbols_caps_v.custom: 0
 add_user_dict:
@@ -50,7 +46,7 @@ aux_patch:
 big_char_set:
   comment_format:
     - "xform/(^|[ '])[^[]+[[]/$1/"
-  dictionary: moqi_big.extended
+  dictionary: moqi_wan.extended
   enable_completion: false
   enable_sentence: false
   enable_user_dict: false
@@ -174,6 +170,7 @@ engine:
     - "lua_filter@*pro_comment_format"
     - "lua_filter@*stick"
     - "lua_filter@*is_in_user_dict"
+    - "lua_filter@*moqi.jianma_show"
     - "reverse_lookup_filter@reverse_lookup"
     - "simplifier@emoji"
     - "simplifier@chaifen"
@@ -213,6 +210,7 @@ engine:
     - "lua_translator@*date_translator"
     - "lua_translator@*lunar"
     - "lua_translator@*unicode"
+    - "lua_translator@*card_number"
     - "lua_translator@*number_translator"
     - "lua_translator@*calculator"
     - punct_translator
@@ -250,37 +248,32 @@ jp_sela:
   tips: "日语"
 key_binder:
   bindings:
-    - {accept: "Control+p", send: Up, when: composing}
-    - {accept: "Control+n", send: Down, when: composing}
-    - {accept: "Control+b", send: Left, when: composing}
-    - {accept: "Control+f", send: Right, when: composing}
-    - {accept: "Control+a", send: Home, when: composing}
-    - {accept: "Control+e", send: End, when: composing}
-    - {accept: "Control+d", send: Delete, when: composing}
-    - {accept: "Control+k", send: "Shift+Delete", when: composing}
-    - {accept: "Control+h", send: BackSpace, when: composing}
-    - {accept: "Control+g", send: Escape, when: composing}
-    - {accept: "Control+bracketleft", send: Escape, when: composing}
-    - {accept: "Control+y", send: Page_Up, when: composing}
-    - {accept: "Alt+v", send: Page_Up, when: composing}
-    - {accept: "Control+v", send: Page_Down, when: composing}
-    - {accept: ISO_Left_Tab, send: "Shift+Left", when: composing}
     - {accept: "Shift+Tab", send: "Shift+Left", when: composing}
     - {accept: Tab, send: "Shift+Right", when: composing}
+    - {accept: "Alt+Left", send: "Shift+Left", when: composing}
+    - {accept: "Alt+Right", send: "Shift+Right", when: composing}
     - {accept: minus, send: Page_Up, when: has_menu}
     - {accept: equal, send: Page_Down, when: has_menu}
-    - {accept: comma, send: Page_Up, when: paging}
-    - {accept: period, send: Page_Down, when: has_menu}
-    - {accept: "Control+Shift+1", select: .next, when: always}
-    - {accept: "Control+Shift+2", toggle: ascii_mode, when: always}
-    - {accept: "Control+Shift+3", toggle: full_shape, when: always}
-    - {accept: "Control+Shift+4", toggle: simplification, when: always}
-    - {accept: "Control+Shift+5", toggle: extended_charset, when: always}
-    - {accept: "Control+Shift+exclam", select: .next, when: always}
-    - {accept: "Control+Shift+at", toggle: ascii_mode, when: always}
-    - {accept: "Control+Shift+numbersign", toggle: full_shape, when: always}
-    - {accept: "Control+Shift+dollar", toggle: simplification, when: always}
-    - {accept: "Control+Shift+percent", toggle: extended_charset, when: always}
+    - {accept: "Control+Shift+3", toggle: ascii_punct, when: always}
+    - {accept: "Control+Shift+numbersign", toggle: ascii_punct, when: always}
+    - {accept: "Control+Shift+4", toggle: traditionalization, when: always}
+    - {accept: "Control+Shift+dollar", toggle: traditionalization, when: always}
+    - {accept: "Control+k", send: "Shift+Delete", when: composing}
+    - {accept: KP_0, send: 0, when: composing}
+    - {accept: KP_1, send: 1, when: composing}
+    - {accept: KP_2, send: 2, when: composing}
+    - {accept: KP_3, send: 3, when: composing}
+    - {accept: KP_4, send: 4, when: composing}
+    - {accept: KP_5, send: 5, when: composing}
+    - {accept: KP_6, send: 6, when: composing}
+    - {accept: KP_7, send: 7, when: composing}
+    - {accept: KP_8, send: 8, when: composing}
+    - {accept: KP_9, send: 9, when: composing}
+    - {accept: KP_Decimal, send: period, when: composing}
+    - {accept: KP_Multiply, send: asterisk, when: composing}
+    - {accept: KP_Add, send: plus, when: composing}
+    - {accept: KP_Subtract, send: minus, when: composing}
+    - {accept: KP_Divide, send: slash, when: composing}
     - {accept: "Control+m", send: Return, when: composing}
     - {accept: "Control+w", send: "Control+BackSpace", when: composing}
     - {accept: semicolon, send: 2, when: has_menu}
@@ -334,7 +327,7 @@ mars:
   opencc_config: martian.json
   option_name: mars
 menu:
-  page_size: 5
+  page_size: 9
 pro_comment_format:
   candidate_length: 1
   corrector: true
@@ -377,38 +370,38 @@ punctuator:
     "}": ["』", "〗", "｝"]
     "~": "～"
   half_shape:
-    "!": {commit: "！"}
+    "!": "！"
     "\"": {pair: ["“", "”"]}
     "#": "#"
-    "$": ["￥", "$", "€", "£", "¥", "¢", "¤"]
-    "%": ["%", "％", "°", "℃"]
+    "$": "¥"
+    "%": "%"
     "&": "&"
     "'": {pair: ["‘", "’"]}
     "(": "（"
     ")": "）"
-    "*": ["*", "＊", "·", "・", "×", "※", "❂"]
+    "*": "*"
     "+": "+"
-    ",": {commit: "，"}
+    ",": "，"
     "-": "-"
-    .: {commit: "。"}
-    "/": ["、", "/", "／", "÷"]
-    ":": {commit: "："}
-    ";": {commit: "；"}
-    "<": ["《", "〈", "«", "‹"]
+    .: "。"
+    "/": ["/", "÷"]
+    ":": "："
+    ";": "；"
+    "<": "《"
     "=": "="
-    ">": ["》", "〉", "»", "›"]
-    "?": {commit: "？"}
+    ">": "》"
+    "?": "？"
     "@": "@"
-    "[": ["「", "【", "〔", "［"]
-    "\\": ["、", "\\", "＼"]
-    "]": ["」", "】", "〕", "］"]
-    "^": {commit: "……"}
+    "[": "【"
+    "\\": "、"
+    "]": "】"
+    "^": "……"
     _: "——"
-    "`": "`"
-    "{": ["『", "〖", "｛"]
+    "`": "、"
+    "{": "「"
     "|": ["·", "|", "｜", "§", "¦"]
-    "}": ["』", "〗", "｝"]
-    "~": ["~", "～"]
+    "}": "」"
+    "~": "~"
   symbols:
     "/0": ["零", "〇", "⁰", "₀", "⓪", "⓿", "０"]
     "/1": ["一", "壹", "¹", "₁", "Ⅰ", "ⅰ", "①", "➀", "❶", "➊", "⓵", "⑴", "⒈", "１", "㊀", "㈠", "弌", "壱", "幺", "㆒"]
@@ -626,6 +619,7 @@ radical_flypy:
 recognizer:
   patterns:
     add_user_dict: "^ac[A-Za-z]*$"
+    card_number: "^C[0-9]+"
     easy_en_simp: "^aw[a-z]*"
     emojis: "^ae[a-z]*'?$"
     gregorian_to_lunar: "^N[0-9]{1,8}"
@@ -650,7 +644,7 @@ reverse_cj:
   tag: reverse_cj
   tips: "〔仓颉〕"
 reverse_lookup:
-  dictionary: moqi_big.extended
+  dictionary: moqi_wan.extended
   overwrite_comment: true
   tags:
     - reverse_moqima
@@ -696,7 +690,7 @@ schema:
   description: |
     墨奇辅助码 小鹤双拼版 大词库版本 非自动上屏，支持4万字 https://github.com/gaboolic/rime-shuangpin-fuzhuma/wiki/%E5%A2%A8%E5%A5%87%E7%A0%81%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99
 
-  name: "墨奇万象+小鹤双拼·鹤形"
+  name: "墨奇+小鹤双拼·鹤形"
   schema_id: moqi_wan_flypy
   version: "2024-05-11"
 speller:

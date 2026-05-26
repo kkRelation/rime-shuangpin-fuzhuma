@@ -7,3 +7,4 @@ customization:
 patch:
   "style/color_scheme": solarized_rock
   # "style/inline_preedit": false
+  "ascii_composer/switch_key/Shift_L": commit_text
