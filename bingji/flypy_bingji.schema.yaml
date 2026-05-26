@@ -22,7 +22,7 @@ schema:
 
 switches:
   - name: ascii_mode
-    states: [ 中文, 西文 ]
+    states: [ 中文, 英文 ]
   - name: full_shape
     states: [ 半角, 全角 ]
   - name: simplification
@@ -348,7 +348,7 @@ recognizer:
     # func_translator: "^af(.*)$"
 
 menu:
-  page_size: 8
+  page_size: 6
 
 quanpin:
   tag: quanpin

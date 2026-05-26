@@ -1,7 +1,7 @@
 import os
 from collections import OrderedDict, defaultdict
 
-root_path = "D:\\vscode_proj\\rime-frost"
+root_path = "D:\\vscode\\rime-frost"
 
 # Function to read a file
 def read_file(file_path):
@@ -79,7 +79,9 @@ def get_zrm_aux_code_map(file_list):
                 character = params[0]
                 encoding = params[1]
                 if "'" not in encoding:
-                    encoding_post = encoding[3:]
+                    if ";" not in encoding:
+                        continue
+                    encoding_post = encoding.split(";", 1)[1]
                     if encoding_post not in dict_data[character]:
                         dict_data[character].append(encoding_post)
     return dict_data
@@ -243,7 +245,7 @@ print("Loading dictionary data...")
 dict_data['moqi'] = get_aux_code_map(['./opencc/moqi_chaifen.txt','./opencc/moqi_chaifen_rongcuo.txt'])
 dict_data['xh'] = get_xh_aux_code_map(['./program/flypydz.yaml','./program/flypydz_g.yaml'])
 dict_data['zrm'] = get_zrm_aux_code_map(['./program/moran.chars.dict.yaml'])
-dict_data['jdh'] = get_aux_code_map(['./program/简单鹤有理版V6.0.3手心辅助码.txt'])
+dict_data['jdh'] = get_aux_code_map(['./program/简单鹤V9.2.0手心辅助码.txt'])
 dict_data['cj'] = get_shoumo_aux_code_map(['./cangjie5.dict.yaml'])
 dict_data['hm'] = get_hu_aux_code_map(['./program/hu_cf.txt'])
 dict_data['wb'] = get_pre2_aux_code_map(['./program/wubi86.dict.yaml'])

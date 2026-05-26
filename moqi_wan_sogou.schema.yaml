@@ -21,12 +21,12 @@ schema:
   dependencies:
     - reverse_moqima
     - radical_flypy
+    - cangjie5
     - stroke
     - zrlf
     - emoji
     - easy_en
     - jp_sela
-    - moqi_big
 
 __include: moqi.yaml:/switches_engine
 __include: moqi.yaml:/phrase # 置顶
@@ -41,7 +41,7 @@ speller:
   auto_select: false
   auto_select_pattern: ^[a-z]+/|^[a-df-zA-DF-Z]\w{3}|^e\w{4}|;[a-z]
   # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射
-  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA[/|;
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA`[/|;
   # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
   initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   # 第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
@@ -78,7 +78,6 @@ __patch:
   user_dict_set/dictionary: moqi_wan.extended
   user_dict_set/prism: moqi_wan_sogou
   add_user_dict/prism: moqi_wan_sogou
-  big_char_set/prism: moqi_wan_big_sogou
   speller/algebra/+:
     __include: aux_patch
 
@@ -142,7 +141,7 @@ key_binder:
     - { when: has_menu, accept: Shift+Y, send_sequence: "{Shift+Right}y{Shift+Right}" }
     - { when: has_menu, accept: Shift+Z, send_sequence: "{Shift+Right}z{Shift+Right}" }
 # 启用語言模型
-#__include: moqi:/octagram/enable_for_sentence
+__include: moqi:/octagram/enable_for_sentence
 
 custom_phrase:
   dictionary: ""

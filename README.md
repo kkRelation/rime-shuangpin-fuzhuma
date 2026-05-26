@@ -1,10 +1,15 @@
 # 说明
 
+墨染清风书雅韵，奇思逸趣入诗文。音随浅唱凝清婉，形绘山河万象新。
+
 重磅发布：墨奇音形，支持自然码、小鹤、搜狗、微软双拼。墨奇音形是一个基于字形描述信息、递归拆分，最后取首末双形音托的码表开源的方案。详见[墨奇码拆分规则](https://github.com/gaboolic/rime-shuangpin-fuzhuma/wiki/%E5%A2%A8%E5%A5%87%E7%A0%81%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99)。[墨奇码](https://github.com/gaboolic/moqima-tables)的拆分码表已开源，目前已经拆分完成全部的通用规范汉字、常用繁体字，总计支持4万字（方案选单中支持大字集和小字集切换）。未来准备支持gb18030-2022标准的8万字。墨奇音形的方案支持ctrl+p开关显示墨奇辅助码+首末字形，ctrl+l开关显示墨奇拆字的拆分。
 
 重磅发布2：现在词库独立演进维护，改为使用745396750字的高质量语料，进行分词，重新统计字频、词频，归一化的[白霜词库](https://github.com/gaboolic/rime-frost)，白霜词库是目前rime方案下最好的词库，在不使用智能模型的情况下可以超越使用智能模型的词库方案。
 
 重磅发布3：墨奇统一词库版，通过拼写运算实现的各种双拼和辅助码排列组合，各类双拼、各类辅助码统一用同一个词库，节省硬盘空间。例如小鹤双拼+虎码首末，微软双拼+墨奇码，自然码双拼+五笔前两码，紫光双拼+仓颉首末码等等。支持的双拼、辅助码运算规则在<https://github.com/gaboolic/rime-shuangpin-fuzhuma/blob/main/moqi_speller.yaml>。让天下双拼用户人人用得上辅助码。
+
+重磅发布4: 句中任意辅助码。
+![句中任意辅助码](readmeimg/input-juzhongfuzhuma.gif)
 
 更新日志：[更新日志.md](md/update-log.md)
 
@@ -34,7 +39,9 @@
 
 下载本仓库的压缩包Code - Download ZIP（或者下载[releases](https://github.com/gaboolic/rime-shuangpin-fuzhuma/releases)最新的source-code.zip），解压到如下路径即可
 
-- windows：%APPDATA%\Rime
+- Windows: 
+  - 小狼毫：%APPDATA%\Roming\Rime （可以在右下角小狼毫输入法右键打开菜单选用户文件夹）复制完之后，去输入法设定里选择白霜拼音，然后重新部署
+  - [墨奇输入法](https://github.com/gaboolic/moqi-im-windows) Rime配置文件夹在：%APPDATA%\Roming\Moqi\Rime （可以在右下角输入法右键打开菜单选用户文件夹）
 - mac
   - [鼠须管](https://github.com/rime/squirrel)路径为~/Library/Rime
   - [fcitx5-mac版](https://github.com/fcitx-contrib/fcitx5-macos)路径为~/.local/share/fcitx5/rime
@@ -65,6 +72,9 @@
 ![寄宿](readmeimg/jisub.png)
 
 ![极速](readmeimg/jimsu.png)
+
+- 整句句中任意辅助码，按`开启
+![句中任意辅助码](readmeimg/input-juzhongfuzhuma.gif)
 
 - 整句输入时增强单字性能，增加syffo或者syff/ 5码上屏单字的功能
 ![zssr](readmeimg/zssr.png)

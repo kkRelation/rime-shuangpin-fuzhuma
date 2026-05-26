@@ -1,7 +1,7 @@
 switches_engine:  
   switches:
     - name: ascii_mode
-      states: [ 中文, 西文 ]
+      states: [ 中文, 英文 ]
     - name: full_shape
       states: [ 半角, 全角 ]
     - name: traditionalization
@@ -10,8 +10,6 @@ switches_engine:
       states: [ 💀, 😄 ]
     - name: chaifen
       states: [ 不拆, 扌斥 ]
-    - name: big_char_set
-      states: [ 大字集, 小字集 ]
     - name: mars
       reset: 0
       states: [ 地, 煋 ] #火星文
@@ -67,7 +65,6 @@ switches_engine:
       - table_translator@custom_phrase_super_3jian
       - table_translator@custom_phrase_super_3jian_no_conflict
       - table_translator@custom_phrase_super_4jian_no_conflict
-      - table_translator@big_char_set # 大字集
       - table_translator@emojis ## 添加注释后：停用ae模式emoji输入
       - table_translator@easy_en_simp ## 添加注释后：停用单词输入
       - table_translator@jp_sela ## 添加注释后：停用日语输入
@@ -87,6 +84,7 @@ switches_engine:
       # lua的filter：
       #- lua_filter@*laneChangeAndSpace_Filter   # 把<br>替换为换行
       - lua_filter@*pro_comment_format                #超级注释模块，支持错词错音提示、任意长度辅助码显示，支持个性化配置和关闭相应的功能，详情搜索pro_comment_format进行详细配置
+      - lua_filter@*aux_lookup_filter                 # ` 引导辅助码筛选候选
       - lua_filter@*stick       #简码回显
       - lua_filter@*is_in_user_dict # 用户词典的词加上一个*
       - lua_filter@*moqi.jianma_show # 当用户用全码"womf"输入“我们”时，回显简码提示"wm"
@@ -101,12 +99,14 @@ switches_engine:
       - simplifier@chaifen
       - simplifier@chaifen_all
       - simplifier@chinese_english
-      - simplifier@big_char_set # 一定要放到traditionalize之前，否则当traditionalize是繁体时，会被该过滤器把繁体字过滤掉，从而无法输入繁体字
       - simplifier@traditionalize                     # 简繁切换
       - simplifier@mars                               #火星文
       - uniquifier
 
-      
+grammar:
+  language: zh-moqi  # 这个很小几乎不起作用但是不能不配置，为了让non_collocation_penalty生效（只要有值就行 不过模型不存在日志里会报错）
+  non_collocation_penalty: -4           # 重要！！！！  这个值非常重要，是整句时的组词惩罚，默认值-12惩罚太大了，不适合白霜词库
+
 octagram:
   disable:
     __patch:
@@ -118,14 +118,15 @@ octagram:
         # language: zh-hans-t-huayu-v7-bgw # 华宇模型
         # language: zh-hans-wiki-202405 # 维基模型
         # language: zh-hans-t-essay-bgw # rime官方模型
-        # language: zhs-moqi # 墨奇训练的模型 聊胜于无
-        collocation_max_length: 4
-        collocation_min_length: 2
-        # non_collocation_penalty: -24
-        # collocation_penalty: -6
+        language: zh-moqi # 墨奇训练的模型 聊胜于无 主要目的是让non_collocation_penalty生效
+        # collocation_max_length: 5
+        # collocation_min_length: 2
+        non_collocation_penalty: -4
+        # collocation_penalty: -4
         # weak_collocation_penalty: -12
         # rear_penalty: -18
       translator/contextual_suggestions: true # 是否使用语言模型优化输出结果〔需配合 grammar 使用〕
+      translator/max_sentences: 3
       translator/max_homophones: 4 # 最大同音簇长度〔需配合 grammar 使用〕
       translator/max_homographs: 2 # 最大同形簇长度〔需配合 grammar 使用〕
 phrase:
@@ -395,20 +396,6 @@ guide:
     idx: 1
 
 big_char_and_user_dict:
-  # 大字集
-  big_char_set:
-    dictionary: moqi_wan.extended
-    option_name: big_char_set
-    initial_quality: -1 # 设置此翻译器出字优先级,-1为极低
-    enable_completion: false
-    enable_sentence: false
-    ##  默认为不超过 2 个字的候选项显示输入码；将 2 改为 0 可关闭编码提示，
-    ##  改为 1 则是只显示单字的输入码，依此类推。
-    spelling_hints: 1
-    comment_format:
-      - "xform/(^|[ '])[^[]+[[]/$1/" ## 编码提示只显示辅助码部分
-
-    enable_user_dict: false # 是否开启自动调频
 
 
   user_dict_set:

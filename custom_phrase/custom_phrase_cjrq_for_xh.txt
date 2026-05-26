@@ -169,6 +169,7 @@
 吱	vik
 状	vll
 卓	vob
+注	vud
 珠	vuw
 咒	vzk
 闻	wfm
@@ -207,3 +208,5 @@
 试	uiyg/
 登	dgv
 期	qiq
+围	wwkw/
+翻	fjp
