@@ -6,6 +6,7 @@
 /cn_dicts_xh_cangjie/
 sancang.dict.yaml
 .DS_Store
+.antigravitycli/
 
 # IDEA
 .idea/
