@@ -181,7 +181,7 @@ key_binder:
     - { when: composing, accept: Control+o, send: Shift+Left }
     # 显示墨奇码拆分的快速开关
     - { when: has_menu, accept: "Control+p", toggle: chaifen }
-    - { when: has_menu, accept: "Control+l", toggle: chaifen_all }
+    - { when: has_menu, accept: "Control+Shift+l", toggle: chaifen_all }
     - { when: has_menu, accept: "Control+e", toggle: chinese_english }
 
 
@@ -194,6 +194,5 @@ key_binder:
     #- { when: composing, accept: Control+2, send_sequence: '{Home}{Shift+Right}{Shift+Right}[' }
     #- { when: composing, accept: Control+3, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}[' }
     #- { when: composing, accept: Control+4, send_sequence: '{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}[' }
-
 
 

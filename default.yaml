@@ -149,6 +149,12 @@ key_binder:
     # - { when: always, toggle: full_shape, accept: Control+Shift+5 }             # 切换全半角
     # - { when: always, toggle: full_shape, accept: Control+Shift+percent }       # 切换全半角
 
+    # 候选项跳转
+    - { when: has_menu, accept: Control+j, send: Down }
+    - { when: has_menu, accept: Control+k, send: Up }
+    - { when: has_menu, accept: Control+h, send_sequence: "{Up}{Up}" }
+    - { when: has_menu, accept: Control+l, send_sequence: "{Down}{Down}" }
+
     # emacs_editing:
     # - { when: composing, accept: Control+p, send: Up }
     # - { when: composing, accept: Control+n, send: Down }
@@ -157,7 +163,7 @@ key_binder:
     # - { when: composing, accept: Control+a, send: Home }
     # - { when: composing, accept: Control+e, send: End }
     # - { when: composing, accept: Control+d, send: Delete }
-    - { when: composing, accept: Control+k, send: Shift+Delete }
+    # - { when: composing, accept: Control+k, send: Shift+Delete }
     # - { when: composing, accept: Control+h, send: BackSpace }
     # - { when: composing, accept: Control+g, send: Escape }
     # - { when: composing, accept: Control+bracketleft, send: Escape }

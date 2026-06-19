@@ -193,7 +193,10 @@ key_binder:
     - {accept: "Control+Shift+numbersign", toggle: ascii_punct, when: always}
     - {accept: "Control+Shift+4", toggle: traditionalization, when: always}
     - {accept: "Control+Shift+dollar", toggle: traditionalization, when: always}
-    - {accept: "Control+k", send: "Shift+Delete", when: composing}
+    - {accept: "Control+j", send: Down, when: has_menu}
+    - {accept: "Control+k", send: Up, when: has_menu}
+    - {accept: "Control+h", send_sequence: "{Up}{Up}", when: has_menu}
+    - {accept: "Control+l", send_sequence: "{Down}{Down}", when: has_menu}
     - {accept: KP_0, send: 0, when: composing}
     - {accept: KP_1, send: 1, when: composing}
     - {accept: KP_2, send: 2, when: composing}
@@ -215,7 +218,7 @@ key_binder:
     - {accept: "Control+i", send: "Shift+Right", when: composing}
     - {accept: "Control+o", send: "Shift+Left", when: composing}
     - {accept: "Control+p", toggle: chaifen, when: has_menu}
-    - {accept: "Control+l", toggle: chaifen_all, when: has_menu}
+    - {accept: "Control+Shift+l", toggle: chaifen_all, when: has_menu}
     - {accept: "Control+e", toggle: chinese_english, when: has_menu}
     - {accept: Tab, match: "[a-z]{1,3}", send_sequence: "/1"}
     - {accept: slash, match: "[a-z]{1,3}", send_sequence: "/1"}
