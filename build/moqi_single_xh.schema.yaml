@@ -1,12 +1,12 @@
 __build_info:
   rime_version: 1.13.1
   timestamps:
-    default: 1779755302
-    default.custom: 1779877402
+    default: 1781889032
+    default.custom: 1780830105
     moqi: 1779755178
     moqi.custom: 0
     moqi_single_xh.custom: 0
-    moqi_single_xh.schema: 1779755178
+    moqi_single_xh.schema: 1781889032
     symbols_caps_v: 1754065572
     symbols_caps_v.custom: 0
 calculator:

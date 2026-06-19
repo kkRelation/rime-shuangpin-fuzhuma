@@ -1,10 +1,10 @@
 __build_info:
   rime_version: 1.13.1
   timestamps:
-    default: 1779755302
-    default.custom: 1779877402
+    default: 1781889032
+    default.custom: 1780830105
     reverse_moqima.custom: 0
-    reverse_moqima.schema: 1754065571
+    reverse_moqima.schema: 1754065572
 engine:
   filters:
     - uniquifier
