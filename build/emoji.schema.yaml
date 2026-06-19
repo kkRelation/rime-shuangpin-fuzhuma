@@ -1,10 +1,10 @@
 __build_info:
   rime_version: 1.13.1
   timestamps:
-    default: 1779557017
-    default.custom: 0
+    default: 1779755302
+    default.custom: 1779877402
     emoji.custom: 0
-    emoji.schema: 1754065571
+    emoji.schema: 1754065572
 engine:
   filters:
     - uniquifier
@@ -56,7 +56,7 @@ key_binder:
     - {accept: KP_Divide, send: slash, when: composing}
   import_preset: default
 menu:
-  page_size: 9
+  page_size: 6
 punctuator:
   full_shape:
     " ": {commit: "　"}

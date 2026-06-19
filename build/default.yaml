@@ -1,15 +1,11 @@
 __build_info:
   rime_version: 1.13.1
   timestamps:
-    default: 1779557017
-    default.custom: 0
+    default: 1779755302
+    default.custom: 1779877402
 ascii_composer:
   good_old_caps_lock: true
   switch_key:
-    Caps_Lock: clear
-    Control_L: noop
-    Control_R: noop
-    Eisu_toggle: clear
     Shift_L: commit_code
     Shift_R: commit_text
 config_version: 0.50
@@ -42,7 +38,7 @@ key_binder:
     - {accept: KP_Subtract, send: minus, when: composing}
     - {accept: KP_Divide, send: slash, when: composing}
 menu:
-  page_size: 9
+  page_size: 6
 punctuator:
   full_shape:
     " ": {commit: "　"}
@@ -118,9 +114,10 @@ recognizer:
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
 schema_list:
   - schema: moqi_wan_flypymo
-  - schema: moqi_wan_zrm
   - schema: moqi_wan_flypy
   - schema: moqi_single_xh
+  - schema: easy_en
+  - schema: emoji
 style:
   horizontal: false
 switcher:
@@ -130,7 +127,6 @@ switcher:
   hotkeys:
     - "Control+grave"
     - "Control+Shift+grave"
-    - F4
   option_list_separator: "／"
   save_options:
     - ascii_mode
@@ -138,6 +134,5 @@ switcher:
     - traditionalization
     - emoji
     - chaifen
-    - big_char_set
     - mars
     - ascii_punct

@@ -1,8 +1,8 @@
 __build_info:
   rime_version: 1.13.1
   timestamps:
-    default: 1779557017
-    default.custom: 0
+    default: 1779755302
+    default.custom: 1779877402
     easy_en.custom: 0
     easy_en.schema: 1774557339
 engine:
@@ -56,7 +56,7 @@ key_binder:
     - {accept: KP_Divide, send: slash, when: composing}
   import_preset: default
 menu:
-  page_size: 9
+  page_size: 6
 recognizer:
   import_preset: default
   patterns:

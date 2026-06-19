@@ -2,7 +2,7 @@
 #@/db_name	user.custom.dict
 #@/db_type	tabledb
 #@/rime_version	1.13.1
-#@/tick	60
+#@/tick	73
 安能	an;bn;bn;bn;iy;jv;wb;pv;gn; neng;sb;sb;sb;pa;ip;kv;ce;vb;	0
 安能分辨我是小狼毫还是墨奇输入法	an;bn;bn;bn;iy;jv;wb;pv;gn; neng;sb;sb;sb;pa;ip;kv;ce;vb; fen;bd;bd;bd,db;fi;ch;hp;wv;bd; bian;xl;lu;dx,xx;bu,bs;yj;nn;uy;lu; wo;ga;pd;pd,pp;uh,ud;hi,zz;tp;q,tr;pg; shi;oz;or;op,ov;ve;ao;ot;j,jg;or; xiao;lb;ld;ad;ii;nc;yx;ih;vd; lang;ql;ql;ql;bh;kv;mi;qt;qh; hao;wm;wm;mb,wm;ir;yu,xu;gv;yp;wm; hai;zb;zb;zb;dq;yf;cu;gi;zb; shi;oz;or;op,ov;ve;ao;ot;j,jg;or; mo;lt;ht;th,ht;ng;wg;pg;lf;ht; qi;dk;dk;dk;xj;kr;mz;ds;dk; shu;id;id;iy;ti;kn;yp;lw;id; ru;pn;pn;pd;ee;oh;ju;ty;pn; fa;dq;ds;dq;kp;ei;kk;if;dv;	2
 嘟	du;ke;ke;kd;ob;rl;dt;kf;ke;	6
@@ -14,6 +14,9 @@
 嚎	hao;ku;ku;kh;oh;ro;dj;ky;kh;	2
 好	hao;nz;nz;nz;ya;vd;bh;vb;nz;	12
 好嘟	hao;nz;nz;nz;ya;vd;bh;vb;nz; du;ke;ke;kd;ob;rl;dt;kf;ke;	22
+何	he;rk;rk;rk;xj,xo;or;jz;ws;rk;	2
+何意味	he;rk;rk;rk;xj,xo;or;jz;ws;rk; yi;lx;lx;xy,lx;bn,cn;yp;xh;uj;lx; wei;kw;kw;kw;oe;rd;da;kf;kw;	6
+何异	he;rk;rk;rk;xj,xo;or;jz;ws;rk; yi;sc;sc;cs,sc;tp,tz;rt,st;vl;na;va;	18
 简	jian;vo;vo;vj;nv;ha;ro;tu;vo;	2
 简单	jian;vo;vo;vj;nv;ha;ro;tu;vo; dan;bu;bl;ba,bd;fs;cj;hn;uj;ea;	6
 墨	mo;lt;ht;th,ht;ng;wg;pg;lf;ht;	4
@@ -26,6 +29,7 @@
 万象	wan;av;ap;ag,ap;du;ms;fp;dn;ap; xiang;du;dn;du,pd,ua;gh;no;wx;qj;en;	0
 我是	wo;ga;pd;pd,pp;uh,ud;hi,zz;tp;q,tr;pg; shi;oz;or;op,ov;ve;ao;ot;j,jg;or;	0
 小狼毫	xiao;lb;ld;ad;ii;nc;yx;ih;vd; lang;ql;ql;ql;bh;kv;mi;qt;qh; hao;wm;wm;mb,wm;ir;yu,xu;gv;yp;wm;	0
+意味	yi;lx;lx;xy,lx;bn,cn;yp;xh;uj;lx; wei;kw;kw;kw;oe;rd;da;kf;kw;	0
 这	zhe;zw;zw;zw;jq;yk;vu;p,yp;zx;	20
 这么屌	zhe;zw;zw;zw;jq;yk;vu;p,yp;zx; me;ps;ps;ps;up;hi;tk;tc;pv; diao;uj;uj;ud;qy;sb;cr;nk;uj;	4
 字	zi;bz;bz;bz;ia;jd;wh;pb;gz;	0

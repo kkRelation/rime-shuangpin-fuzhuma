@@ -1,12 +1,12 @@
 __build_info:
   rime_version: 1.13.1
   timestamps:
-    default: 1779557017
-    default.custom: 0
-    moqi: 1774557339
+    default: 1779755302
+    default.custom: 1779877402
+    moqi: 1779755178
     moqi.custom: 0
     moqi_single_xh.custom: 0
-    moqi_single_xh.schema: 1774557339
+    moqi_single_xh.schema: 1779755178
     symbols_caps_v: 1754065572
     symbols_caps_v.custom: 0
 calculator:
@@ -577,6 +577,7 @@ schema:
   dependencies:
     - reverse_moqima
     - radical_flypy
+    - cangjie5
     - stroke
     - zrlf
     - emoji
@@ -608,7 +609,7 @@ speller:
     - {accept: "[a-z]", match: "[a-df-zA-DF-Z]\\w{3}"}
 switches:
   - name: ascii_mode
-    states: ["中文", "西文"]
+    states: ["中文", "英文"]
   - name: full_shape
     states: ["半角", "全角"]
   - name: traditionalization
@@ -617,8 +618,6 @@ switches:
     states: ["💀", "😄"]
   - name: chaifen
     states: ["不拆", "扌斥"]
-  - name: big_char_set
-    states: ["大字集", "小字集"]
   - name: mars
     reset: 0
     states: ["地", "煋"]

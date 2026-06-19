@@ -1,13 +1,16 @@
 customization:
-  distribution_code_name: hamster
-  distribution_version: ""
+  distribution_code_name: Weasel
+  distribution_version: 0.17.4
   generator: "Rime::SwitcherSettings"
-  modified_time: "Wed Mar  4 00:32:15 2026"
-  rime_version: 1.16.1
-patch
-  schema_list:
-    - {schema: moqi_single_xh}
-    - {schema: moqi_wan_flypy}
-  ascii_composer/switch_key:
+  modified_time: "Wed May 27 18:23:22 2026"
+  rime_version: 1.13.1
+patch:
+  "ascii_composer/switch_key":
     Shift_L: commit_code
     Shift_R: commit_text
+  schema_list:
+    - {schema: moqi_wan_flypymo}
+    - {schema: moqi_wan_flypy}
+    - {schema: moqi_single_xh}
+    - {schema: easy_en}
+    - {schema: emoji}

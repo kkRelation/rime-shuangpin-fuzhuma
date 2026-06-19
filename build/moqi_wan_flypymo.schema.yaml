@@ -1,14 +1,14 @@
 __build_info:
   rime_version: 1.13.1
   timestamps:
-    default: 1779557017
-    default.custom: 0
-    moqi: 1774557339
+    default: 1779755302
+    default.custom: 1779877402
+    moqi: 1779755178
     moqi.custom: 0
     moqi_speller: 1754065572
     moqi_speller.custom: 0
-    moqi_wan_flypymo.schema: 1779707789
-    symbols_caps_v: 1754065571
+    moqi_wan_flypymo.schema: 1779755178
+    symbols_caps_v: 1754065572
     symbols_caps_v.custom: 0
 add_user_dict:
   comment_format:
@@ -44,17 +44,6 @@ aux_patch:
   - "derive|^(.{2});.*,(\\w)(\\w).*$|$1$2$3/|"
   - "derive|^(\\w+?);.*,(\\w)(\\w).*$|$1$2$3/|"
   - "derive|^(.{2});.*,(\\w)(\\w).*$|$1$2$3/|"
-big_char_set:
-  comment_format:
-    - "xform/(^|[ '])[^[]+[[]/$1/"
-  dictionary: moqi_wan.extended
-  enable_completion: false
-  enable_sentence: false
-  enable_user_dict: false
-  initial_quality: "-1"
-  option_name: big_char_set
-  prism: moqi_wan_big_flypymo
-  spelling_hints: 1
 calculator:
   trigger: V
 chaifen:
@@ -169,6 +158,7 @@ emojis:
 engine:
   filters:
     - "lua_filter@*pro_comment_format"
+    - "lua_filter@*aux_lookup_filter"
     - "lua_filter@*stick"
     - "lua_filter@*is_in_user_dict"
     - "lua_filter@*moqi.jianma_show"
@@ -177,7 +167,6 @@ engine:
     - "simplifier@chaifen"
     - "simplifier@chaifen_all"
     - "simplifier@chinese_english"
-    - "simplifier@big_char_set"
     - "simplifier@traditionalize"
     - "simplifier@mars"
     - uniquifier
@@ -224,7 +213,6 @@ engine:
     - "table_translator@custom_phrase_super_3jian"
     - "table_translator@custom_phrase_super_3jian_no_conflict"
     - "table_translator@custom_phrase_super_4jian_no_conflict"
-    - "table_translator@big_char_set"
     - "table_translator@emojis"
     - "table_translator@easy_en_simp"
     - "table_translator@jp_sela"
@@ -237,6 +225,9 @@ engine:
     - script_translator
     - "script_translator@user_dict_set"
     - "script_translator@add_user_dict"
+grammar:
+  language: "zh-moqi"
+  non_collocation_penalty: "-4"
 jp_sela:
   comment_format:
     - "xform/^.+$//"
@@ -329,7 +320,7 @@ mars:
   opencc_config: martian.json
   option_name: mars
 menu:
-  page_size: 9
+  page_size: 6
 pro_comment_format:
   candidate_length: 1
   corrector: true
@@ -683,12 +674,12 @@ schema:
   dependencies:
     - reverse_moqima
     - radical_flypy
+    - cangjie5
     - stroke
     - zrlf
     - emoji
     - easy_en
     - jp_sela
-    - moqi_big
   description: |
     墨奇辅助码 小鹤双拼版 大词库版本 非自动上屏，支持4万字 https://github.com/gaboolic/rime-shuangpin-fuzhuma/wiki/%E5%A2%A8%E5%A5%87%E7%A0%81%E6%8B%86%E5%88%86%E8%A7%84%E5%88%99
 
@@ -743,7 +734,7 @@ speller:
     - "derive|^(.{2});.*,(\\w)(\\w).*$|$1$2$3/|"
     - "derive|^(\\w+?);.*,(\\w)(\\w).*$|$1$2$3/|"
     - "derive|^(.{2});.*,(\\w)(\\w).*$|$1$2$3/|"
-  alphabet: "zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA[/|"
+  alphabet: "zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA`[/|"
   auto_select: false
   auto_select_pattern: "^[a-z]+/|^[a-df-zA-DF-Z]\\w{3}|^e\\w{4}|;[a-z]"
   delimiter: " '"
@@ -751,7 +742,7 @@ speller:
   max_code_length: 5
 switches:
   - name: ascii_mode
-    states: ["中文", "西文"]
+    states: ["中文", "英文"]
   - name: full_shape
     states: ["半角", "全角"]
   - name: traditionalization
@@ -760,8 +751,6 @@ switches:
     states: ["💀", "😄"]
   - name: chaifen
     states: ["不拆", "扌斥"]
-  - name: big_char_set
-    states: ["大字集", "小字集"]
   - name: mars
     reset: 0
     states: ["地", "煋"]
@@ -778,10 +767,14 @@ traditionalize:
 translator:
   comment_format:
     {}
+  contextual_suggestions: true
   dictionary: moqi_wan.extended
   enable_completion: false
   enable_user_dict: false
   initial_quality: 10000
+  max_homographs: 2
+  max_homophones: 4
+  max_sentences: 3
   prism: moqi_wan_flypymo
   spelling_hints: 10
 user_dict_set:

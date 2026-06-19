@@ -1,10 +1,10 @@
 __build_info:
   rime_version: 1.13.1
   timestamps:
-    default: 1779557017
-    default.custom: 0
+    default: 1779755302
+    default.custom: 1779877402
     zrlf.custom: 0
-    zrlf.schema: 1754065571
+    zrlf.schema: 1754065572
 engine:
   filters:
     - simplifier
