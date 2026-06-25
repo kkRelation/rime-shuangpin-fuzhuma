@@ -1,9 +1,9 @@
 __build_info:
   rime_version: 1.13.1
   timestamps:
-    default: 1781889032
+    default: 1782412490
     default.custom: 1780830105
-    moqi: 1779755178
+    moqi: 1782412483
     moqi.custom: 0
     moqi_speller: 1754065572
     moqi_speller.custom: 0
@@ -172,6 +172,7 @@ engine:
   processors:
     - ascii_composer
     - recognizer
+    - "lua_processor@*passive_spacing"
     - "lua_processor@*sbxlm.key_binder"
     - key_binder
     - speller
@@ -249,6 +250,7 @@ key_binder:
     - {accept: "Control+Shift+numbersign", toggle: ascii_punct, when: always}
     - {accept: "Control+Shift+4", toggle: traditionalization, when: always}
     - {accept: "Control+Shift+dollar", toggle: traditionalization, when: always}
+    - {accept: "Control+Shift+space", toggle: passive_spacing, when: always}
     - {accept: "Control+j", send: Down, when: has_menu}
     - {accept: "Control+k", send: Up, when: has_menu}
     - {accept: "Control+h", send_sequence: "{Up}{Up}", when: has_menu}
@@ -754,6 +756,9 @@ switches:
   - name: mars
     reset: 0
     states: ["地", "煋"]
+  - name: passive_spacing
+    reset: 0
+    states: ["连写", "分词"]
   - name: ascii_punct
     states: ["。，", "．，"]
 traditionalize:

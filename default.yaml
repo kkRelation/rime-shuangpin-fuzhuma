@@ -146,6 +146,7 @@ key_binder:
     - { when: always, toggle: ascii_punct, accept: Control+Shift+numbersign } # 切换中英标点
     - { when: always, toggle: traditionalization, accept: Control+Shift+4 } # 切换简繁
     - { when: always, toggle: traditionalization, accept: Control+Shift+dollar } # 切换简繁
+    - { when: always, toggle: passive_spacing, accept: Control+Shift+space } # 切换被动分词
     # - { when: always, toggle: full_shape, accept: Control+Shift+5 }             # 切换全半角
     # - { when: always, toggle: full_shape, accept: Control+Shift+percent }       # 切换全半角
 
