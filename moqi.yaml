@@ -21,6 +21,7 @@ switches_engine:
 
   engine:
     processors:
+      - lua_processor@*sbxlm.shift_commit_candidate
       - ascii_composer
       - recognizer
       - lua_processor@*passive_spacing # 分词模式补空格；按 8 临时分词上屏

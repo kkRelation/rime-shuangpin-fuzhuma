@@ -2,13 +2,15 @@
 #@/db_name	user.custom.dict
 #@/db_type	tabledb
 #@/rime_version	1.13.1
-#@/tick	76
+#@/tick	86
 安能	an;bn;bn;bn;iy;jv;wb;pv;gn; neng;sb;sb;sb;pa;ip;kv;ce;vb;	0
 安能分辨我是小狼毫还是墨奇输入法	an;bn;bn;bn;iy;jv;wb;pv;gn; neng;sb;sb;sb;pa;ip;kv;ce;vb; fen;bd;bd;bd,db;fi;ch;hp;wv;bd; bian;xl;lu;dx,xx;bu,bs;yj;nn;uy;lu; wo;ga;pd;pd,pp;uh,ud;hi,zz;tp;q,tr;pg; shi;oz;or;op,ov;ve;ao;ot;j,jg;or; xiao;lb;ld;ad;ii;nc;yx;ih;vd; lang;ql;ql;ql;bh;kv;mi;qt;qh; hao;wm;wm;mb,wm;ir;yu,xu;gv;yp;wm; hai;zb;zb;zb;dq;yf;cu;gi;zb; shi;oz;or;op,ov;ve;ao;ot;j,jg;or; mo;lt;ht;th,ht;ng;wg;pg;lf;ht; qi;dk;dk;dk;xj;kr;mz;ds;dk; shu;id;id;iy;ti;kn;yp;lw;id; ru;pn;pn;pd;ee;oh;ju;ty;pn; fa;dq;ds;dq;kp;ei;kk;if;dv;	2
 此	ci;vb;vb;vb;ra;yp;sv;hx;vb;	2
 此现象	ci;vb;vb;vb;ra;yp;sv;hx;vb; xian;wj;we;wj;ak,ar;mu;ne;gm;wj; xiang;du;dn;du,pd,ua;gh;no;wx;qj;en;	2
 嘟	du;ke;ke;kd;ob;rl;dt;kf;ke;	6
 分辨	fen;bd;bd;bd,db;fi;ch;hp;wv;bd; bian;xl;lu;dx,xx;bu,bs;yj;nn;uy;lu;	0
+工作	gong;aa;aa;aa;pp;mm;ug;a,aa;aa; zuo;rv;rv;rv;xu;os;jw;wt;rv;	2
+工作树	gong;aa;aa;aa;pp;mm;ug;a,aa;aa; zuo;rv;rv;rv;xu;os;jw;wt;rv; shu;mc;mc;md;wk;di;ek;sc;lc;	6
 官	guan;bl;bk;bg,bk;id;jr;wk;pn;ga;	2
 官鹤	guan;bl;bk;bg,bk;id;jr;wk;pn;ga; he;bn;dn;nv;ic;om;wx;pw;dn;	14
 还是	hai;zb;zb;zb;dq;yf;cu;gi;zb; shi;oz;or;op,ov;ve;ao;ot;j,jg;or;	0
@@ -28,12 +30,17 @@
 声笔	sheng;tu;up;um;gp;gh;gc;fn;up; bi;vm;vm;vm;nr;hu;rv;tt;vm;	2
 声笔字	sheng;tu;up;um;gp;gh;gc;fn;up; bi;vm;vm;vm;nr;hu;rv;tt;vm; zi;bz;bz;bz;ia;jd;wh;pb;gz;	2
 输入法	shu;id;id;iy;ti;kn;yp;lw;id; ru;pn;pn;pd;ee;oh;ju;ty;pn; fa;dq;ds;dq;kp;ei;kk;if;dv;	0
+树	shu;mc;mc;md;wk;di;ek;sc;lc;	0
 万象	wan;av;ap;ag,ap;du;ms;fp;dn;ap; xiang;du;dn;du,pd,ua;gh;no;wx;qj;en;	0
 我是	wo;ga;pd;pd,pp;uh,ud;hi,zz;tp;q,tr;pg; shi;oz;or;op,ov;ve;ao;ot;j,jg;or;	0
 现象	xian;wj;we;wj;ak,ar;mu;ne;gm;wj; xiang;du;dn;du,pd,ua;gh;no;wx;qj;en;	0
 小狼毫	xiao;lb;ld;ad;ii;nc;yx;ih;vd; lang;ql;ql;ql;bh;kv;mi;qt;qh; hao;wm;wm;mb,wm;ir;yu,xu;gv;yp;wm;	0
+小	xiao;lb;ld;ad;pf;nc;yx;ih;vd;	4
+小鹤	xiao;lb;ld;ad;pf;nc;yx;ih;vd; he;bn;dn;nv;ic;om;wx;pw;dn;	4
 也就是说	ye;vv;vv;gg;rr;pd;ey;bn;vv; jiu;wy;wy;yj;ih;yu;go;yi;wy; shi;oz;or;op,ov;ve;ao;ot;j,jg;or; shuo;yx;ye;yd;ck;iu;sp;yu;ye;	2
 意味	yi;lx;lx;xy,lx;bn,cn;yp;xh;uj;lx; wei;kw;kw;kw;oe;rd;da;kf;kw;	0
+音	yin;lo;lo;lo;cc,bv;ya;xy;uj;lo;	2
+音形	yin;lo;lo;lo;cc,bv;ya;xy;uj;lo; xing;kp;kp;pk;uu;mh;fe;ga;kp;	2
 这	zhe;zw;zw;zw;jq;yk;vu;p,yp;zx;	20
 这么屌	zhe;zw;zw;zw;jq;yk;vu;p,yp;zx; me;ps;ps;ps;up;hi;tk;tc;pv; diao;uj;uj;ud;qy;sb;cr;nk;uj;	4
 字	zi;bz;bz;bz;ia;jd;wh;pb;gz;	0
