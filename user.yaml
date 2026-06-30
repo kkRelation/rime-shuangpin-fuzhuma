@@ -1,5 +1,8 @@
 var:
-  last_build_time: 1782412839
+  last_build_time: 1782809015
+  option:
+    chaifen: false
+    passive_spacing: false
   previously_selected_schema: moqi_wan_flypymo
   schema_access_time:
     easy_en: 1781853399
