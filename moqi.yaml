@@ -13,6 +13,9 @@ switches_engine:
     - name: mars
       reset: 0
       states: [ 地, 煋 ] #火星文
+    - name: passive_spacing
+      reset: 0
+      states: [ 连写, 分词 ]
     - name: ascii_punct
       states: [ 。，, ．， ]
 
@@ -20,7 +23,7 @@ switches_engine:
     processors:
       - ascii_composer
       - recognizer
-      - lua_processor@*passive_spacing # 按 8 分词上屏：等价于空格选中后补空格
+      - lua_processor@*passive_spacing # 分词模式补空格；按 8 临时分词上屏
       - lua_processor@*sbxlm.key_binder # 绑定按键
       - key_binder
       - speller

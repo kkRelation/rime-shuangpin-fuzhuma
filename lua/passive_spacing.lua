@@ -1,7 +1,9 @@
--- 按 8 分词上屏：等价于空格选中后补一个空格，普通空格保持连写。
+-- 被动分词：开启 passive_spacing 后，上屏时自动补空格；按 8 可临时分词上屏。
 
 local M = {}
 local rime = require "sbxlm.lib"
+
+local XK_Tab = 0xff09
 
 local function current_segment(context)
   if not context or not context.composition or context.composition:empty() then
@@ -20,6 +22,36 @@ end
 
 local function is_punct_segment(segment)
   return segment and segment:has_tag("punct")
+end
+
+local function is_short_tab_equivalent(key_event, input, segment)
+  if not segment or not segment:has_tag("abc") then
+    return false
+  end
+  if not input:match("^[a-z][a-z]?[a-z]?$") then
+    return false
+  end
+  return key_event.keycode == XK_Tab
+      or key_event.keycode == string.byte("/")
+      or key_event.keycode == string.byte(".")
+end
+
+local function is_selection_key(key_event, context, input, segment)
+  if is_punct_segment(segment) then
+    return false
+  end
+
+  local repr = key_event:repr()
+  if repr == "space" then
+    return context:has_menu()
+  end
+  if repr == "semicolon" then
+    return context:has_menu()
+  end
+  if repr == "1" or repr == "2" or repr == "3" then
+    return context:has_menu()
+  end
+  return is_short_tab_equivalent(key_event, input, segment)
 end
 
 function M.init(env)
@@ -73,13 +105,17 @@ function M.func(key_event, env)
   end
 
   local segment = current_segment(context)
-  if repr ~= "8" or is_punct_segment(segment) or not context:has_menu() then
-    return rime.process_results.kNoop
+  if repr == "8" and not is_punct_segment(segment) and context:has_menu() then
+    env.passive_spacing_pending = true
+    env.engine:process_key(rime.KeyEvent("space"))
+    return rime.process_results.kAccepted
   end
 
-  env.passive_spacing_pending = true
-  env.engine:process_key(rime.KeyEvent("space"))
-  return rime.process_results.kAccepted
+  if context:get_option("passive_spacing") and is_selection_key(key_event, context, input, segment) then
+    env.passive_spacing_pending = true
+  end
+
+  return rime.process_results.kNoop
 end
 
 return M

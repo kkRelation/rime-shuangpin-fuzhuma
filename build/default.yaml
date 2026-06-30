@@ -21,6 +21,7 @@ key_binder:
     - {accept: "Control+Shift+numbersign", toggle: ascii_punct, when: always}
     - {accept: "Control+Shift+4", toggle: traditionalization, when: always}
     - {accept: "Control+Shift+dollar", toggle: traditionalization, when: always}
+    - {accept: "Control+Shift+space", toggle: passive_spacing, when: always}
     - {accept: "Control+j", send: Down, when: has_menu}
     - {accept: "Control+k", send: Up, when: has_menu}
     - {accept: "Control+h", send_sequence: "{Up}{Up}", when: has_menu}
