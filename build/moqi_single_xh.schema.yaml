@@ -3,11 +3,11 @@ __build_info:
   timestamps:
     default: 1782829324
     default.custom: 1780830105
-    moqi: 1782829324
+    moqi: 1782835041
     moqi.custom: 0
     moqi_single_xh.custom: 0
     moqi_single_xh.schema: 1781889032
-    symbols_caps_v: 1754065572
+    symbols_caps_v: 1754065571
     symbols_caps_v.custom: 0
 calculator:
   trigger: V
