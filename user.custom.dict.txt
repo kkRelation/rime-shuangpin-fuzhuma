@@ -2,7 +2,7 @@
 #@/db_name	user.custom.dict
 #@/db_type	tabledb
 #@/rime_version	1.13.1
-#@/tick	86
+#@/tick	88
 安能	an;bn;bn;bn;iy;jv;wb;pv;gn; neng;sb;sb;sb;pa;ip;kv;ce;vb;	0
 安能分辨我是小狼毫还是墨奇输入法	an;bn;bn;bn;iy;jv;wb;pv;gn; neng;sb;sb;sb;pa;ip;kv;ce;vb; fen;bd;bd;bd,db;fi;ch;hp;wv;bd; bian;xl;lu;dx,xx;bu,bs;yj;nn;uy;lu; wo;ga;pd;pd,pp;uh,ud;hi,zz;tp;q,tr;pg; shi;oz;or;op,ov;ve;ao;ot;j,jg;or; xiao;lb;ld;ad;ii;nc;yx;ih;vd; lang;ql;ql;ql;bh;kv;mi;qt;qh; hao;wm;wm;mb,wm;ir;yu,xu;gv;yp;wm; hai;zb;zb;zb;dq;yf;cu;gi;zb; shi;oz;or;op,ov;ve;ao;ot;j,jg;or; mo;lt;ht;th,ht;ng;wg;pg;lf;ht; qi;dk;dk;dk;xj;kr;mz;ds;dk; shu;id;id;iy;ti;kn;yp;lw;id; ru;pn;pn;pd;ee;oh;ju;ty;pn; fa;dq;ds;dq;kp;ei;kk;if;dv;	2
 此	ci;vb;vb;vb;ra;yp;sv;hx;vb;	2
@@ -23,6 +23,8 @@
 何异	he;rk;rk;rk;xj,xo;or;jz;ws;rk; yi;sc;sc;cs,sc;tp,tz;rt,st;vl;na;va;	18
 简	jian;vo;vo;vj;nv;ha;ro;tu;vo;	2
 简单	jian;vo;vo;vj;nv;ha;ro;tu;vo; dan;bu;bl;ba,bd;fs;cj;hn;uj;ea;	6
+理	li;wl;wl;wl;ag;mg;nd;gj;wl;	2
+理一理	li;wl;wl;wl;ag;mg;nd;gj;wl; yi;aa;aa;aa;dd;mm;fi;g,gg;aa; li;wl;wl;wl;ag;mg;nd;gj;wl;	2
 墨	mo;lt;ht;th,ht;ng;wg;pg;lf;ht;	4
 墨奇	mo;lt;ht;th,ht;ng;wg;pg;lf;ht; qi;dk;dk;dk;xj;kr;mz;ds;dk;	2
 墨奇万象	mo;lt;ht;th,ht;ng;wg;pg;lf;ht; qi;dk;dk;dk;xj;kr;mz;ds;dk; wan;av;ap;ag,ap;du;ms;fp;dn;ap; xiang;du;dn;du,pd,ua;gh;no;wx;qj;en;	10
