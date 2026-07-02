@@ -181,6 +181,18 @@ local function collect_candidates(input)
     return candidates
 end
 
+local function limit_candidates(candidates, limit)
+    if limit <= 0 or #candidates <= limit then
+        return candidates
+    end
+
+    local limited = {}
+    for i = 1, limit do
+        limited[i] = candidates[i]
+    end
+    return limited
+end
+
 local function find_variant_positions(candidates)
     local positions = {}
     local max_len = 0
@@ -271,6 +283,11 @@ function M.init(env)
     env.aux_type = config:get_string("aux_lookup_filter/aux_type")
         or config:get_string("pro_comment_format/fuzhu_type")
         or "moqi"
+    env.variant_candidate_limit = config:get_int("aux_lookup_filter/variant_candidate_limit")
+    if not env.variant_candidate_limit or env.variant_candidate_limit < 0 then
+        local page_size = config:get_int("menu/page_size") or 6
+        env.variant_candidate_limit = page_size * 2
+    end
 
     env.notifier = env.engine.context.select_notifier:connect(function(ctx)
         if not env.enabled then
@@ -319,7 +336,8 @@ function M.func(input, env)
 
     local aux_table = load_aux_table(env)
     local candidates = collect_candidates(input)
-    local variant_group, variant_positions = find_variant_group(candidates)
+    local variant_candidates = limit_candidates(candidates, env.variant_candidate_limit)
+    local variant_group, variant_positions = find_variant_group(variant_candidates)
     local yielded = {}
     local has_variant_match = false
 

@@ -57,6 +57,50 @@
 - 明确优先顺序：
   先做 Rime 通用层优化，再视瓶颈迁移到 `librime` 插件。
 
+### pro_comment_format 初始化瘦身
+
+文件：
+
+- [lua/pro_comment_format.lua](D:/C2D/Desktop/Code/Lua/inputMethod/rime-moqi-wanxiang-schemas/lua/pro_comment_format.lua)
+
+已完成内容：
+
+- 配置读取移到 `init(env)` 阶段。
+- `CR.corrections` 改为模块级常量，不再每次 filter 调用时重建。
+- `fuzhu_type -> pattern` 改为模块级常量。
+- `func()` 不再重复执行初始化。
+- 保持候选注释处理语义不变。
+
+### stick 轻量整理
+
+文件：
+
+- [lua/stick.lua](D:/C2D/Desktop/Code/Lua/inputMethod/rime-moqi-wanxiang-schemas/lua/stick.lua)
+
+已完成内容：
+
+- 去掉首候选路径的重复 `yield` 风险。
+- 清理未使用的初始化字段。
+- 将 Lua 5.1 不支持的 `goto` 改为普通分支。
+- 保持原有短输入提示行为不变。
+
+### aux_lookup_filter 初步热路径优化
+
+文件：
+
+- [lua/aux_lookup_filter.lua](D:/C2D/Desktop/Code/Lua/inputMethod/rime-moqi-wanxiang-schemas/lua/aux_lookup_filter.lua)
+
+已完成内容：
+
+- 候选收集时不再立即拆字。
+- 改为候选实际参与分析或匹配时才拆字。
+- 拆字结果缓存到当前候选项，避免同一轮 filter 内重复拆字。
+- fallback 匹配路径复用同一份拆字缓存。
+- 增加 `aux_lookup_filter/variant_candidate_limit` 配置项。
+- 默认只用 `menu/page_size * 2` 个候选做变体组分析。
+- `variant_candidate_limit: 0` 可关闭变体组候选上限。
+- 普通 fallback 匹配仍不截断。
+
 ## 待办
 
 ### 高优先级
@@ -69,17 +113,14 @@
 
 现状问题：
 
-- `C.func()` 每次调用都会执行 `C.init(env)` 和 `CR.init(env)`。
-- `CR.init` 中会重建整张 `CR.corrections` 表。
-- 注释解析和辅助码提取仍有明显热路径开销。
+- 初始化层面的重复开销已处理。
+- 注释解析和辅助码提取仍可能有热路径开销。
 
 建议优化：
 
-- 配置只在 `init(env)` 读取一次。
-- `CR.corrections` 改为模块级常量。
-- `fuzhu_type -> pattern` 改为模块级常量。
 - 仅在需要时解析 `comment`。
 - 按候选数量增加处理预算，避免无条件扫描全部候选。
+- 增加轻量 debug 计数或手工回归样本后，再评估是否需要进一步预算控制。
 
 #### aux_lookup_filter
 
@@ -89,14 +130,14 @@
 
 现状问题：
 
-- 触发辅助码筛选后，会收集候选再做变体组分析。
-- 对大候选流场景仍可能过重。
+- 拆字重复和变体组全量分析已处理。
+- 触发辅助码筛选后，仍会收集候选并执行普通 fallback 匹配。
 
 建议优化：
 
-- 给候选收集增加上限。
-- 找到足够匹配后提前停止。
-- 保持当前辅助码表懒加载设计。
+- 增加 debug 计数：候选总数、变体分析数量、变体命中、fallback 命中。
+- 基于实际数据再决定是否给 fallback 匹配加预算。
+- 继续保持当前辅助码表懒加载设计。
 
 #### stick
 
@@ -106,13 +147,12 @@
 
 现状问题：
 
-- 收益不如前两项大，但逻辑仍有整理空间。
+- 首候选重复输出风险已处理。
 - 仍可进一步压缩非目标场景下的处理开销。
 
 建议优化：
 
 - 严格限定处理范围在短输入场景。
-- 检查首候选路径，避免潜在重复输出风险。
 - 让透传路径更轻。
 
 ### 中优先级
