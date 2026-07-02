@@ -15,6 +15,19 @@
 --  corrector: true                     # 启用错音错词提醒，例如输入 geiyu 给予 获得 jiyu 提示
 --  corrector_type: "{comment}"         # 新增一个显示类型，比如"【{comment}】" 
 
+local M = {}
+
+local FUZHU_PATTERNS = {
+    moqi = "[^;]*;([^;]*);",
+    flypy = "[^;]*;[^;]*;([^;]*);",
+    zrm = "[^;]*;[^;]*;[^;]*;([^;]*);",
+    jdh = "[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);",
+    cj = "[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);",
+    tiger = "[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);",
+    wubi = "[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);",
+    hx = "[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);"
+}
+
 -- #########################
 -- # 错音错字提示模块 (Corrector)
 -- #########################
@@ -29,7 +42,9 @@ function CR.init(env)
         env.settings.corrector_type = env.settings.corrector_type:gsub('^*', '')
     end
     CR.style = config:get_string("pro_comment_format/corrector_type") or '{comment}'
-    CR.corrections = {
+end
+
+CR.corrections = {
         -- 错音
         ["hun dun"] = { text = "馄饨", comment = "hún tun" },
         ["zhu jiao"] = { text = "主角", comment = "zhǔ jué" },
@@ -135,7 +150,6 @@ function CR.init(env)
         ["mo xie zuo"] = { text = "魔蝎座", comment = "摩羯(jié)座" },
         ["geng quan"] = { text = "梗犬", comment = "㹴犬" },
     }
-end
 
 function CR.run(cand, env, initial_comment)
     -- 用空格分隔注释中的每个片段
@@ -185,20 +199,8 @@ function FZ.run(cand, env, initial_comment)
             table.insert(segments, segment)
         end
 
-        -- 定义 fuzhu_type 与匹配模式的映射表
-        local patterns = {
-            moqi = "[^;]*;([^;]*);",
-            flypy = "[^;]*;[^;]*;([^;]*);",
-            zrm = "[^;]*;[^;]*;[^;]*;([^;]*);",
-            jdh = "[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);",
-            cj = "[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);",
-            tiger = "[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);",
-            wubi = "[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);",
-            hx    = "[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);"
-        }
-
         -- 获取当前 fuzhu_type 对应的模式
-        local pattern = patterns[env.settings.fuzhu_type]
+        local pattern = FUZHU_PATTERNS[env.settings.fuzhu_type]
 
         if pattern then
             -- 提取匹配内容
@@ -244,15 +246,9 @@ function C.init(env)
         log.info("env.settings = nil")
         env.settings = nil
     end
-    
+    CR.init(env)
 end 
 function C.func(input, env)
-    -- 调用全局初始共享环境
-    C.init(env)
-    CR.init(env)
-
-    local processed_candidates = {}  -- 用于存储处理后的候选词
-    local deal_count = 1
     if (env.settings == nil) then
         for cand in input:iter() do
             yield(cand)
@@ -262,50 +258,49 @@ function C.func(input, env)
         for cand in input:iter() do
             if cand.type == 'completion' then
                 yield(cand)
-                goto continue
-            end
-            deal_count = deal_count + 1
-            -- log.info(cand.type)
-            -- log.info(cand.text)
-            local initial_comment = cand.comment  -- 保存候选词的初始注释
-            local final_comment = initial_comment  -- 初始化最终注释为初始注释
-            -- 处理辅助码提示
-            if env.settings.fuzhu_code_enabled then
-                local fz_comment = FZ.run(cand, env, initial_comment)
-                if fz_comment then
-                    final_comment = fz_comment
-                end
             else
-                -- 如果辅助码显示被关闭，则清空注释
-                final_comment = ""
-            end
-
-            -- 处理错词提醒
-            if env.settings.corrector_enabled then
-                local cr_comment = CR.run(cand, env, initial_comment)
-                if cr_comment then
-                    final_comment = cr_comment
+                -- log.info(cand.type)
+                -- log.info(cand.text)
+                local initial_comment = cand.comment  -- 保存候选词的初始注释
+                local final_comment = initial_comment  -- 初始化最终注释为初始注释
+                -- 处理辅助码提示
+                if env.settings.fuzhu_code_enabled then
+                    local fz_comment = FZ.run(cand, env, initial_comment)
+                    if fz_comment then
+                        final_comment = fz_comment
+                    end
+                else
+                    -- 如果辅助码显示被关闭，则清空注释
+                    final_comment = ""
                 end
-            end
 
-            -- 更新最终注释
-            if final_comment ~= initial_comment then
-                cand:get_genuine().comment = final_comment
+                -- 处理错词提醒
+                if env.settings.corrector_enabled then
+                    local cr_comment = CR.run(cand, env, initial_comment)
+                    if cr_comment then
+                        final_comment = cr_comment
+                    end
+                end
+
+                -- 更新最终注释
+                if final_comment ~= initial_comment then
+                    cand:get_genuine().comment = final_comment
+                end
+                
+                yield(cand)
             end
-            
-            yield(cand)
-            ::continue::
         end
 
-        -- 输出处理后的候选词
-        -- for _, cand in ipairs(processed_candidates) do
-        --     yield(cand)
-        -- end
     end
 end
+
+M.init = C.init
+M.func = C.func
 return {
+    init = M.init,
+    func = M.func,
     CR = CR,
     FZ = FZ,
     C = C,
-    func = C.func
+    M = M
 }
