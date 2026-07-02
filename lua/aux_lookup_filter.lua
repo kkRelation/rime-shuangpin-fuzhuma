@@ -119,6 +119,13 @@ local function split_chars(text)
     return chars
 end
 
+local function get_chars(item)
+    if not item.chars then
+        item.chars = split_chars(item.cand.text)
+    end
+    return item.chars
+end
+
 local function char_matches_prefix(aux_table, ch, aux)
     local codes = aux_table[ch]
     if not codes then
@@ -147,12 +154,11 @@ local function match_subsequence(aux_table, chars, aux)
     return pos > #aux
 end
 
-local function candidate_matches(aux_table, text, aux)
-    if text == "" or aux == "" then
+local function candidate_matches_chars(aux_table, chars, aux)
+    if #chars == 0 or aux == "" then
         return false
     end
 
-    local chars = split_chars(text)
     for i = 1, #chars do
         if char_matches_prefix(aux_table, chars[i], aux) then
             return true
@@ -170,7 +176,6 @@ local function collect_candidates(input)
     for cand in input:iter() do
         candidates[#candidates + 1] = {
             cand = cand,
-            chars = split_chars(cand.text),
         }
     end
     return candidates
@@ -180,8 +185,9 @@ local function find_variant_positions(candidates)
     local positions = {}
     local max_len = 0
     for i = 1, #candidates do
-        if #candidates[i].chars > max_len then
-            max_len = #candidates[i].chars
+        local chars = get_chars(candidates[i])
+        if #chars > max_len then
+            max_len = #chars
         end
     end
 
@@ -189,7 +195,7 @@ local function find_variant_positions(candidates)
         local first = nil
         local differs = false
         for i = 1, #candidates do
-            local ch = candidates[i].chars[pos]
+            local ch = get_chars(candidates[i])[pos]
             if ch then
                 if first == nil then
                     first = ch
@@ -210,7 +216,7 @@ local function find_variant_group(candidates)
     local groups = {}
     local order = {}
     for i = 1, #candidates do
-        local len = #candidates[i].chars
+        local len = #get_chars(candidates[i])
         if len > 0 then
             local group = groups[len]
             if not group then
@@ -320,7 +326,7 @@ function M.func(input, env)
     if variant_group and variant_positions then
         for i = 1, #variant_group do
             local item = variant_group[i]
-            if candidate_matches_positions(aux_table, item.chars, aux, variant_positions) then
+            if candidate_matches_positions(aux_table, get_chars(item), aux, variant_positions) then
                 yielded[item] = true
                 has_variant_match = true
                 yield(item.cand)
@@ -331,7 +337,7 @@ function M.func(input, env)
     for i = 1, #candidates do
         local item = candidates[i]
         if not yielded[item] and not has_variant_match then
-            if candidate_matches(aux_table, item.cand.text, aux) then
+            if candidate_matches_chars(aux_table, get_chars(item), aux) then
                 yield(item.cand)
             end
         end
