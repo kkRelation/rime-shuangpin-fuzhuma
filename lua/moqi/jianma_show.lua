@@ -31,19 +31,22 @@ local function append_hint(cand, hint)
    end
 end
 
-local function pick_hint(all_codes, word_len, current_input)
+local function pick_hint(all_codes, word_len, current_input, current_input_length)
    local short_codes = {}
    local four_char_codes = {}
    local other_codes = {}
 
    for code in all_codes:gmatch("%S+") do
-      if #code <= 2 then
-         short_codes[#short_codes + 1] = code
-      elseif word_len <= 4 then
-         if word_len == 4 and #code == 4 then
-            four_char_codes[#four_char_codes + 1] = code
-         elseif #code < 4 and code ~= current_input then
-            other_codes[#other_codes + 1] = code
+      local code_length = #code
+      if code_length < current_input_length then
+         if code_length <= 2 then
+            short_codes[#short_codes + 1] = code
+         elseif word_len <= 4 then
+            if word_len == 4 and code_length == 4 then
+               four_char_codes[#four_char_codes + 1] = code
+            elseif code_length < 4 and code ~= current_input then
+               other_codes[#other_codes + 1] = code
+            end
          end
       end
    end
@@ -100,7 +103,7 @@ local function lookup_hint(env, word, word_len, current_input, current_input_len
       return nil
    end
 
-   local hint = pick_hint(all_codes, word_len, current_input)
+   local hint = pick_hint(all_codes, word_len, current_input, current_input_length)
    cache[word] = hint or CACHE_MISS
    return hint
 end
