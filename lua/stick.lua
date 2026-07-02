@@ -5,12 +5,8 @@ local M = {}
 
 function M.init(env)
     -- 初始化逻辑，加载固定词典等
-    local config = env.engine.schema.config
     env.name_space = env.name_space:gsub("^*", "")
     env.fixed = {}
-    M.count = config:get_int(env.name_space .. "/count") or 2  -- 获取配置中的 count 参数，默认值为 2
-    M.idx = config:get_int(env.name_space .. "/idx") or 4  -- 获取配置中的 idx 参数，默认值为 4
-    M.input_str = env.engine.context.input  -- 获取当前输入的字符串
 
     -- 定义固定词典文件的路径
     local paths = {
@@ -28,16 +24,14 @@ function M.init(env)
         end
         -- 逐行读取文件内容
         for line in file:lines() do
-            if string.sub(line, 1, 1) == "#" then
-                goto continue
+            if string.sub(line, 1, 1) ~= "#" then
+                -- 匹配编码和词条内容
+                local code, content = line:match("([^\t]+)\t([^\t]+)")
+                if content and code then
+                    content = string.sub(content, 1, -2)  -- 去除词条内容末尾的换行符
+                    env.fixed[content] = code  -- 将编码和词条内容存储到 env.fixed 表中
+                end
             end
-            -- 匹配编码和词条内容
-            local code, content = line:match("([^\t]+)\t([^\t]+)")
-            if content and code then
-                content = string.sub(content, 1, -2)  -- 去除词条内容末尾的换行符
-                env.fixed[content] = code  -- 将编码和词条内容存储到 env.fixed 表中
-            end
-            ::continue::
         end
         file:close()  -- 关闭文件
     end
@@ -68,8 +62,6 @@ function M.func(input, env)
                     -- first_cand.comment = stick_phrase .. "⚡"  -- 在注释后面加上闪电符号，表示快速输入，不想要置空
                     first_cand.comment = stick_phrase
                 end
-                yield(first_cand)
-                found = true
             end
         end
         yield(cand)
