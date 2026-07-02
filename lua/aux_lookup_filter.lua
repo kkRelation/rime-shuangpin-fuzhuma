@@ -193,6 +193,12 @@ local function limit_candidates(candidates, limit)
     return limited
 end
 
+local function debug(env, message)
+    if env.debug then
+        log.info("aux_lookup_filter: " .. message)
+    end
+end
+
 local function find_variant_positions(candidates)
     local positions = {}
     local max_len = 0
@@ -283,6 +289,7 @@ function M.init(env)
     env.aux_type = config:get_string("aux_lookup_filter/aux_type")
         or config:get_string("pro_comment_format/fuzhu_type")
         or "moqi"
+    env.debug = config:get_bool("aux_lookup_filter/debug") or false
     env.variant_candidate_limit = config:get_int("aux_lookup_filter/variant_candidate_limit")
     if not env.variant_candidate_limit or env.variant_candidate_limit < 0 then
         local page_size = config:get_int("menu/page_size") or 6
@@ -340,6 +347,8 @@ function M.func(input, env)
     local variant_group, variant_positions = find_variant_group(variant_candidates)
     local yielded = {}
     local has_variant_match = false
+    local variant_hits = 0
+    local fallback_hits = 0
 
     if variant_group and variant_positions then
         for i = 1, #variant_group do
@@ -347,6 +356,7 @@ function M.func(input, env)
             if candidate_matches_positions(aux_table, get_chars(item), aux, variant_positions) then
                 yielded[item] = true
                 has_variant_match = true
+                variant_hits = variant_hits + 1
                 yield(item.cand)
             end
         end
@@ -356,10 +366,23 @@ function M.func(input, env)
         local item = candidates[i]
         if not yielded[item] and not has_variant_match then
             if candidate_matches_chars(aux_table, get_chars(item), aux) then
+                fallback_hits = fallback_hits + 1
                 yield(item.cand)
             end
         end
     end
+
+    debug(env, string.format(
+        "input=%s aux=%s candidates=%d variant_limit=%d variant_scanned=%d variant_group=%s variant_hits=%d fallback_hits=%d",
+        input_code,
+        aux,
+        #candidates,
+        env.variant_candidate_limit,
+        #variant_candidates,
+        tostring(variant_group ~= nil and variant_positions ~= nil),
+        variant_hits,
+        fallback_hits
+    ))
 end
 
 return M
