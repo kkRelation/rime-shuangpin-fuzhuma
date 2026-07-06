@@ -72,6 +72,7 @@ aux_patch:
     __include: moqi_speller.yaml:/common_aux
 
 __patch:
+  aux_lookup_filter/debug: true
   add_user_dict/dictionary: moqi_wan.extended
   user_dict_set/dictionary: moqi_wan.extended
   translator/prism: moqi_wan_flypymo
@@ -95,7 +96,7 @@ key_binder:
     - { when: composing, accept: Control+o, send: Shift+Left }
     # 显示墨奇码拆分的快速开关
     - { when: has_menu, accept: "Control+p", toggle: chaifen }
-    - { when: has_menu, accept: "Control+Shift+l", toggle: chaifen_all }
+    - { when: has_menu, accept: "Control+Alt+p", toggle: chaifen_all }
     - { when: has_menu, accept: "Control+e", toggle: chinese_english }
 
 

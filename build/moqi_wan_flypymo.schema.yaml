@@ -5,10 +5,10 @@ __build_info:
     default.custom: 1780830105
     moqi: 1782835041
     moqi.custom: 0
-    moqi_speller: 1754065571
+    moqi_speller: 1754065572
     moqi_speller.custom: 0
-    moqi_wan_flypymo.schema: 1781889032
-    symbols_caps_v: 1754065571
+    moqi_wan_flypymo.schema: 1783325524
+    symbols_caps_v: 1754065572
     symbols_caps_v.custom: 0
 add_user_dict:
   comment_format:
@@ -279,7 +279,7 @@ key_binder:
     - {accept: "Control+i", send: "Shift+Right", when: composing}
     - {accept: "Control+o", send: "Shift+Left", when: composing}
     - {accept: "Control+p", toggle: chaifen, when: has_menu}
-    - {accept: "Control+Shift+l", toggle: chaifen_all, when: has_menu}
+    - {accept: "Control+Alt+p", toggle: chaifen_all, when: has_menu}
     - {accept: "Control+e", toggle: chinese_english, when: has_menu}
     - {accept: Tab, match: "[a-z]{1,3}", send_sequence: "/1"}
     - {accept: "/", match: "[a-z]{1,3}", send_sequence: "/1"}
