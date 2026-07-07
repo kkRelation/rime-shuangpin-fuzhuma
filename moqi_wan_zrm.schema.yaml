@@ -96,7 +96,7 @@ key_binder:
     - { when: composing, accept: Control+o, send: Shift+Left }
     # 显示墨奇码拆分的快速开关
     - { when: has_menu, accept: "Control+p", toggle: chaifen }
-    - { when: has_menu, accept: "Control+Alt+p", toggle: chaifen_all }
+    - { when: has_menu, accept: "Control+backslash", toggle: chaifen_all }
     - { when: has_menu, accept: "Control+e", toggle: chinese_english }
 
 
