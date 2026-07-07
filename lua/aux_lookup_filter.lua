@@ -195,7 +195,7 @@ end
 
 local function debug(env, message)
     if env.debug then
-        log.info("aux_lookup_filter: " .. message)
+        log.warning("aux_lookup_filter: " .. message)
     end
 end
 
@@ -296,6 +296,14 @@ function M.init(env)
         env.variant_candidate_limit = page_size * 2
     end
 
+    debug(env, string.format(
+        "init enabled=%s trigger=%s aux_type=%s variant_limit=%d",
+        tostring(env.enabled),
+        env.trigger_key,
+        env.aux_type,
+        env.variant_candidate_limit
+    ))
+
     env.notifier = env.engine.context.select_notifier:connect(function(ctx)
         if not env.enabled then
             return
@@ -323,6 +331,7 @@ end
 
 function M.func(input, env)
     if not env.enabled then
+        debug(env, "skip disabled")
         pass_through(input)
         return
     end
@@ -337,6 +346,7 @@ function M.func(input, env)
     local aux = input_code:sub(trigger_pos + #env.trigger_key):match("^([^,']+)") or ""
     aux = aux:sub(1, 2)
     if aux == "" then
+        debug(env, "skip empty_aux input=" .. input_code)
         pass_through(input)
         return
     end
