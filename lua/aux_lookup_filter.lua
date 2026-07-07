@@ -171,26 +171,29 @@ local function candidate_matches_chars(aux_table, chars, aux)
     return false
 end
 
-local function collect_candidates(input)
-    local candidates = {}
-    for cand in input:iter() do
-        candidates[#candidates + 1] = {
-            cand = cand,
-        }
-    end
-    return candidates
+local function make_item(cand)
+    return {
+        cand = cand,
+    }
 end
 
-local function limit_candidates(candidates, limit)
-    if limit <= 0 or #candidates <= limit then
-        return candidates
+local function collect_variant_candidates(iter, limit)
+    local candidates = {}
+    if limit <= 0 then
+        for cand in iter do
+            candidates[#candidates + 1] = make_item(cand)
+        end
+        return candidates, true
     end
 
-    local limited = {}
-    for i = 1, limit do
-        limited[i] = candidates[i]
+    for _ = 1, limit do
+        local cand = iter()
+        if not cand then
+            return candidates, true
+        end
+        candidates[#candidates + 1] = make_item(cand)
     end
-    return limited
+    return candidates, false
 end
 
 local function debug(env, message)
@@ -352,19 +355,19 @@ function M.func(input, env)
     end
 
     local aux_table = load_aux_table(env)
-    local candidates = collect_candidates(input)
-    local variant_candidates = limit_candidates(candidates, env.variant_candidate_limit)
+    local iter = input:iter()
+    local variant_candidates, exhausted = collect_variant_candidates(iter, env.variant_candidate_limit)
     local variant_group, variant_positions = find_variant_group(variant_candidates)
-    local yielded = {}
     local has_variant_match = false
     local variant_hits = 0
     local fallback_hits = 0
+    local candidates_seen = #variant_candidates
+    local stream_exhausted = exhausted
 
     if variant_group and variant_positions then
         for i = 1, #variant_group do
             local item = variant_group[i]
             if candidate_matches_positions(aux_table, get_chars(item), aux, variant_positions) then
-                yielded[item] = true
                 has_variant_match = true
                 variant_hits = variant_hits + 1
                 yield(item.cand)
@@ -372,21 +375,36 @@ function M.func(input, env)
         end
     end
 
-    for i = 1, #candidates do
-        local item = candidates[i]
-        if not yielded[item] and not has_variant_match then
+    if not has_variant_match then
+        for i = 1, #variant_candidates do
+            local item = variant_candidates[i]
             if candidate_matches_chars(aux_table, get_chars(item), aux) then
                 fallback_hits = fallback_hits + 1
                 yield(item.cand)
             end
         end
+
+        if not exhausted then
+            for cand in iter do
+                candidates_seen = candidates_seen + 1
+                local item = make_item(cand)
+                if candidate_matches_chars(aux_table, get_chars(item), aux) then
+                    fallback_hits = fallback_hits + 1
+                    yield(item.cand)
+                end
+            end
+            stream_exhausted = true
+        end
+    elseif not exhausted then
+        debug(env, "skip remaining candidates after variant match input=" .. input_code)
     end
 
     debug(env, string.format(
-        "input=%s aux=%s candidates=%d variant_limit=%d variant_scanned=%d variant_group=%s variant_hits=%d fallback_hits=%d",
+        "input=%s aux=%s candidates=%d stream_exhausted=%s variant_limit=%d variant_scanned=%d variant_group=%s variant_hits=%d fallback_hits=%d",
         input_code,
         aux,
-        #candidates,
+        candidates_seen,
+        tostring(stream_exhausted),
         env.variant_candidate_limit,
         #variant_candidates,
         tostring(variant_group ~= nil and variant_positions ~= nil),
