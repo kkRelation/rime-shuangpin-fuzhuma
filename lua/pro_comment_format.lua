@@ -17,16 +17,31 @@
 
 local M = {}
 
-local FUZHU_PATTERNS = {
-    moqi = "[^;]*;([^;]*);",
-    flypy = "[^;]*;[^;]*;([^;]*);",
-    zrm = "[^;]*;[^;]*;[^;]*;([^;]*);",
-    jdh = "[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);",
-    cj = "[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);",
-    tiger = "[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);",
-    wubi = "[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);",
-    hx = "[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;[^;]*;([^;]*);"
+local FUZHU_FIELD_INDEX = {
+    moqi = 2,
+    flypy = 3,
+    zrm = 4,
+    jdh = 5,
+    cj = 6,
+    tiger = 7,
+    wubi = 8,
+    hx = 9
 }
+
+local function get_semicolon_field(segment, target_index)
+    local start_pos = 1
+    for index = 1, target_index do
+        local sep_pos = segment:find(";", start_pos, true)
+        if not sep_pos then
+            return nil
+        end
+        if index == target_index then
+            return segment:sub(start_pos, sep_pos - 1)
+        end
+        start_pos = sep_pos + 1
+    end
+    return nil
+end
 
 -- #########################
 -- # 错音错字提示模块 (Corrector)
@@ -151,7 +166,16 @@ CR.corrections = {
         ["geng quan"] = { text = "梗犬", comment = "㹴犬" },
     }
 
+CR.correction_texts = {}
+for _, correction in pairs(CR.corrections) do
+    CR.correction_texts[correction.text] = true
+end
+
 function CR.run(cand, env, initial_comment)
+    if not CR.correction_texts[cand.text] then
+        return nil
+    end
+
     -- 用空格分隔注释中的每个片段
     local pinyin_segments = {}
     for segment in initial_comment:gmatch("[^%s]+") do
@@ -193,29 +217,18 @@ function FZ.run(cand, env, initial_comment)
     if env.settings.fuzhu_code_enabled and length <= env.settings.candidate_length then
         local fuzhu_comments = {}
 
-        -- 先用空格将注释分成多个片段
-        local segments = {}
-        for segment in initial_comment:gmatch("[^%s]+") do
-            table.insert(segments, segment)
-        end
-
-        -- 获取当前 fuzhu_type 对应的模式
-        local pattern = FUZHU_PATTERNS[env.settings.fuzhu_type]
-
-        if pattern then
-            -- 提取匹配内容
-            for _, segment in ipairs(segments) do
-                local match = segment:match(pattern)
-                if match then
-                    table.insert(fuzhu_comments, match)
-                end
-            end
-        else
-            -- 如果类型不匹配，返回空字符串
+        local field_index = FUZHU_FIELD_INDEX[env.settings.fuzhu_type]
+        if not field_index then
             return ""
         end
 
-        -- 将提取的拼音片段用空格连接起来
+        for segment in initial_comment:gmatch("[^%s]+") do
+            local match = get_semicolon_field(segment, field_index)
+            if match then
+                fuzhu_comments[#fuzhu_comments + 1] = match
+            end
+        end
+
         if #fuzhu_comments > 0 then
             final_comment = table.concat(fuzhu_comments, "/")
         end
@@ -243,7 +256,6 @@ function C.init(env)
             fuzhu_type = config:get_string("pro_comment_format/fuzhu_type") or ""  -- 辅助码类型
         }
     else
-        log.info("env.settings = nil")
         env.settings = nil
     end
     CR.init(env)

@@ -4,7 +4,7 @@ __build_info:
     default: 1782829324
     default.custom: 1780830105
     stroke.custom: 0
-    stroke.schema: 1749012324
+    stroke.schema: 1749012323
 abc_segmentor:
   extra_tags:
     - reverse_lookup
