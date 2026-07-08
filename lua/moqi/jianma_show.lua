@@ -3,6 +3,7 @@
 -- 当用户用全码 "womf" 输入"我们"时，回显简码提示 "wm"。
 
 local Module = {}
+local profile = require("moqi.profile")
 
 local DICT_NAME = "moqi_single"
 local CACHE_MISS = false
@@ -126,6 +127,7 @@ end
 
 function Module.init(env)
    local config = env.engine.schema.config
+   profile.init(env, "jianma_show")
    env.jianma_show_debug = config:get_bool("jianma_show/debug") or false
    env.jianma_show_input = nil
    env.jianma_show_cache = {}
@@ -160,14 +162,19 @@ function Module.func(translation, env)
 
    reset_cache_if_needed(env, current_input)
 
+   local cand_count = 0
    for cand in translation:iter() do
+      cand_count = cand_count + 1
+      local profile_started_at = profile.now(env)
       local gcand = cand:get_genuine()
       local word = gcand.text or ""
       local word_len = get_word_len(word)
       local hint = lookup_hint(env, word, word_len, current_input, current_input_length)
       append_hint(gcand, hint)
+      profile.add_work(env, profile_started_at)
       yield(cand)
    end
+   profile.finish(env, cand_count)
 end
 
 return Module

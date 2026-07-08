@@ -16,6 +16,7 @@
 --  corrector_type: "{comment}"         # 新增一个显示类型，比如"【{comment}】" 
 
 local M = {}
+local profile = require("moqi.profile")
 
 local FUZHU_FIELD_INDEX = {
     moqi = 2,
@@ -245,6 +246,7 @@ end
 local C = {}
 function C.init(env)
     local config = env.engine.schema.config
+    profile.init(env, "pro_comment_format")
 
     if (config:get_map("pro_comment_format") ~= nil) then
         -- 获取 pro_comment_format 配置项
@@ -262,15 +264,21 @@ function C.init(env)
 end 
 function C.func(input, env)
     if (env.settings == nil) then
+        local cand_count = 0
         for cand in input:iter() do
+            cand_count = cand_count + 1
             yield(cand)
         end
+        profile.finish(env, cand_count)
     else
+        local cand_count = 0
         -- 遍历输入的候选词
         for cand in input:iter() do
+            cand_count = cand_count + 1
             if cand.type == 'completion' then
                 yield(cand)
             else
+                local profile_started_at = profile.now(env)
                 -- log.info(cand.type)
                 -- log.info(cand.text)
                 local initial_comment = cand.comment  -- 保存候选词的初始注释
@@ -298,10 +306,12 @@ function C.func(input, env)
                 if final_comment ~= initial_comment then
                     cand:get_genuine().comment = final_comment
                 end
+                profile.add_work(env, profile_started_at)
                 
                 yield(cand)
             end
         end
+        profile.finish(env, cand_count)
 
     end
 end

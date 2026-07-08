@@ -2,8 +2,10 @@
 -- 增加在快捷词汇后面显示闪电符号来表示快速输入字符、也可以理解为来自简码词库，配合方案快捷设置，闪电出现时按下Tab可以上屏。
 -- @gaboolic @amzxyz
 local M = {}
+local profile = require("moqi.profile")
 
 function M.init(env)
+    profile.init(env, "stick")
     -- 初始化逻辑，加载固定词典等
     env.name_space = env.name_space:gsub("^*", "")
     env.fixed = {}
@@ -50,10 +52,13 @@ end
 function M.func(input, env)
     local first_cand = nil
     local found = false
+    local cand_count = 0
 
     -- 遍历输入的候选词
     for cand in input:iter() do
+        cand_count = cand_count + 1
         if not first_cand then
+            local profile_started_at = profile.now(env)
             first_cand = cand
             local preedit_str = cand.preedit
             if utf8.len(preedit_str) <= 3 and isAllLetters(preedit_str) then
@@ -63,6 +68,7 @@ function M.func(input, env)
                     first_cand.comment = stick_phrase
                 end
             end
+            profile.add_work(env, profile_started_at)
         end
         yield(cand)
         found = true
@@ -76,6 +82,7 @@ function M.func(input, env)
             yield(create_candidate(stick_phrase, "⚡"))  -- 在注释中加上闪电符号，表示快速输入，不想要置空
         end
     end
+    profile.finish(env, cand_count)
 end
 
 return M

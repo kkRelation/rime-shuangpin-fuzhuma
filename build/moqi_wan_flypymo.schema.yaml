@@ -5,9 +5,9 @@ __build_info:
     default.custom: 1780830105
     moqi: 1782835041
     moqi.custom: 0
-    moqi_speller: 1754065572
+    moqi_speller: 1754065571
     moqi_speller.custom: 0
-    moqi_wan_flypymo.schema: 1783436128
+    moqi_wan_flypymo.schema: 1783504624
     symbols_caps_v: 1754065572
     symbols_caps_v.custom: 0
 add_user_dict:
@@ -329,6 +329,10 @@ mars:
   option_name: mars
 menu:
   page_size: 6
+moqi_profile:
+  enabled: true
+  log_every: 100
+  slow_ms: 2
 pro_comment_format:
   candidate_length: 1
   corrector: true
