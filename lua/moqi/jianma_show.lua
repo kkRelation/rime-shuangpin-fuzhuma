@@ -7,6 +7,12 @@ local Module = {}
 local DICT_NAME = "moqi_single"
 local CACHE_MISS = false
 
+local function pass_through(input)
+   for cand in input:iter() do
+      yield(cand)
+   end
+end
+
 local function debug(env, message)
    if env.jianma_show_debug then
       log.info("jianma_show: " .. message)
@@ -108,6 +114,16 @@ local function lookup_hint(env, word, word_len, current_input, current_input_len
    return hint
 end
 
+local function get_word_len(word)
+   if word == "" then
+      return 0
+   end
+   if #word <= 3 then
+      return 1
+   end
+   return utf8.len(word) or 0
+end
+
 function Module.init(env)
    local config = env.engine.schema.config
    env.jianma_show_debug = config:get_bool("jianma_show/debug") or false
@@ -131,20 +147,23 @@ end
 
 function Module.func(translation, env)
    if not env.custom_phrase_reverse then
-      for cand in translation:iter() do
-         yield(cand)
-      end
+      pass_through(translation)
       return
    end
 
    local current_input = env.engine.context.input or ""
    local current_input_length = #current_input
+   if current_input_length < 4 then
+      pass_through(translation)
+      return
+   end
+
    reset_cache_if_needed(env, current_input)
 
    for cand in translation:iter() do
       local gcand = cand:get_genuine()
       local word = gcand.text or ""
-      local word_len = utf8.len(word) or 0
+      local word_len = get_word_len(word)
       local hint = lookup_hint(env, word, word_len, current_input, current_input_length)
       append_hint(gcand, hint)
       yield(cand)
