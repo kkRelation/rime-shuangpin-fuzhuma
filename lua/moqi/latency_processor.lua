@@ -13,7 +13,8 @@ local function log_commit(env, ctx)
    end
 
    log.warning(string.format(
-      "moqi_latency: phase=commit ms=%.3f input_before=%s input_now=%s keycode=%d text_len=%d",
+      "moqi_latency: phase=commit seq=%d ms=%.3f input_before=%s input_now=%s keycode=%d text_len=%d",
+      state.key_seq or 0,
       elapsed_ms,
       state.key_input or "",
       ctx.input or "",
@@ -49,7 +50,9 @@ function M.func(key_event, env)
    state.key_at = os.clock()
    state.key_input = env.engine.context.input or ""
    state.keycode = key_event.keycode or 0
-   state.candidate_logged_for_key = false
+   state.key_seq = (state.key_seq or 0) + 1
+   state.candidate_logged_for_key = {}
+   state.candidate_elapsed_ms = {}
    return rime.process_results.kNoop
 end
 

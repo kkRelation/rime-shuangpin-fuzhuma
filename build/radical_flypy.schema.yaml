@@ -4,7 +4,7 @@ __build_info:
     default: 1782829324
     default.custom: 1780830105
     radical_flypy.custom: 0
-    radical_flypy.schema: 1754065571
+    radical_flypy.schema: 1754065572
 engine:
   filters:
     - uniquifier

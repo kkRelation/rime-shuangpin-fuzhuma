@@ -2,7 +2,9 @@ local M = {
    key_at = nil,
    key_input = "",
    keycode = 0,
-   candidate_logged_for_key = false,
+   key_seq = 0,
+   candidate_logged_for_key = {},
+   candidate_elapsed_ms = {},
    calls = 0,
 }
 
