@@ -2,7 +2,7 @@
 #@/db_name	user.custom.dict
 #@/db_type	tabledb
 #@/rime_version	1.13.1
-#@/tick	99
+#@/tick	100
 安能	an;bn;bn;bn;iy;jv;wb;pv;gn; neng;sb;sb;sb;pa;ip;kv;ce;vb;	0
 安能分辨我是小狼毫还是墨奇输入法	an;bn;bn;bn;iy;jv;wb;pv;gn; neng;sb;sb;sb;pa;ip;kv;ce;vb; fen;bd;bd;bd,db;fi;ch;hp;wv;bd; bian;xl;lu;dx,xx;bu,bs;yj;nn;uy;lu; wo;ga;pd;pd,pp;uh,ud;hi,zz;tp;q,tr;pg; shi;oz;or;op,ov;ve;ao;ot;j,jg;or; xiao;lb;ld;ad;ii;nc;yx;ih;vd; lang;ql;ql;ql;bh;kv;mi;qt;qh; hao;wm;wm;mb,wm;ir;yu,xu;gv;yp;wm; hai;zb;zb;zb;dq;yf;cu;gi;zb; shi;oz;or;op,ov;ve;ao;ot;j,jg;or; mo;lt;ht;th,ht;ng;wg;pg;lf;ht; qi;dk;dk;dk;xj;kr;mz;ds;dk; shu;id;id;iy;ti;kn;yp;lw;id; ru;pn;pn;pd;ee;oh;ju;ty;pn; fa;dq;ds;dq;kp;ei;kk;if;dv;	2
 此	ci;vb;vb;vb;ra;yp;sv;hx;vb;	2
@@ -39,7 +39,7 @@
 输入法	shu;id;id;iy;ti;kn;yp;lw;id; ru;pn;pn;pd;ee;oh;ju;ty;pn; fa;dq;ds;dq;kp;ei;kk;if;dv;	0
 树	shu;mc;mc;md;wk;di;ek;sc;lc;	0
 推	tui;fv;ff;fv;ja;qg;uu;rw;fa;	2
-推流	tui;fv;ff;fv;ja;qg;uu;rw;fa; liu;di;dv;di;kr;eu;ko;iy;dv;	4
+推流	tui;fv;ff;fv;ja;qg;uu;rw;fa; liu;di;dv;di;kr;eu;ko;iy;dv;	6
 万象	wan;av;ap;ag,ap;du;ms;fp;dn;ap; xiang;du;dn;du,pd,ua;gh;no;wx;qj;en;	0
 我是	wo;ga;pd;pd,pp;uh,ud;hi,zz;tp;q,tr;pg; shi;oz;or;op,ov;ve;ao;ot;j,jg;or;	0
 现象	xian;wj;we;wj;ak,ar;mu;ne;gm;wj; xiang;du;dn;du,pd,ua;gh;no;wx;qj;en;	0

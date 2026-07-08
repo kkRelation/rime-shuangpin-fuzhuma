@@ -3,12 +3,12 @@ __build_info:
   timestamps:
     default: 1782829324
     default.custom: 1780830105
-    moqi: 1782835041
+    moqi: 1783515343
     moqi.custom: 0
     moqi_speller: 1754065572
     moqi_speller.custom: 0
     moqi_wan_flypy.schema: 1783436128
-    symbols_caps_v: 1754065572
+    symbols_caps_v: 1754065571
     symbols_caps_v.custom: 0
 add_user_dict:
   comment_format:
@@ -161,6 +161,7 @@ engine:
     - "lua_filter@*stick"
     - "lua_filter@*is_in_user_dict"
     - "lua_filter@*moqi.jianma_show"
+    - "lua_filter@*moqi.latency_filter"
     - "reverse_lookup_filter@reverse_lookup"
     - "simplifier@emoji"
     - "simplifier@chaifen"
@@ -170,6 +171,7 @@ engine:
     - "simplifier@mars"
     - uniquifier
   processors:
+    - "lua_processor@*moqi.latency_processor"
     - "lua_processor@*sbxlm.shift_commit_candidate"
     - ascii_composer
     - recognizer

@@ -21,6 +21,7 @@ switches_engine:
 
   engine:
     processors:
+      - lua_processor@*moqi.latency_processor
       - lua_processor@*sbxlm.shift_commit_candidate
       - ascii_composer
       - recognizer
@@ -93,6 +94,7 @@ switches_engine:
       - lua_filter@*stick       #简码回显
       - lua_filter@*is_in_user_dict # 用户词典的词加上一个*
       - lua_filter@*moqi.jianma_show # 当用户用全码"womf"输入“我们”时，回显简码提示"wm"
+      - lua_filter@*moqi.latency_filter
       #- lua_filter@*long_word_filter                       # 长词优先（顺序要求：长词优先 > Emoji）
       # - lua_filter@*moran_debug_filter # debug
 
