@@ -72,18 +72,52 @@ aux_patch:
     __include: moqi_speller.yaml:/common_aux
 
 __patch:
-  aux_lookup_filter/debug: true
-  moqi_profile/enabled: true
-  moqi_profile/log_every: 100
+  aux_lookup_filter/debug: false
+  moqi_profile/enabled: false
+  moqi_profile/log_every: 200
   moqi_profile/slow_ms: 2
   moqi_latency_probe/enabled: true
-  moqi_latency_probe/log_every: 50
-  moqi_latency_probe/threshold_ms: 10
+  moqi_latency_probe/profile: no-octagram-low-probe
+  moqi_latency_probe/log_every: 200
+  moqi_latency_probe/threshold_ms: 50
+  grammar: {}
+  translator/contextual_suggestions: false
   add_user_dict/dictionary: moqi_wan.extended
   user_dict_set/dictionary: moqi_wan.extended
   translator/prism: moqi_wan_flypymo
   user_dict_set/prism: moqi_wan_flypymo
   add_user_dict/prism: moqi_wan_flypymo
+  # A/B candidate for general path: keep the main script_translator, remove
+  # extra user-dict translators that run on the ordinary candidate path.
+  # Uncomment this block for the next measurement round.
+  # engine/translators:
+  #   - lua_translator@*shijian
+  #   - lua_translator@*unicode
+  #   - lua_translator@*number
+  #   - lua_translator@*baibian
+  #   - lua_translator@*card_number
+  #   - lua_translator@*number_translator
+  #   - lua_translator@*calculator
+  #   - punct_translator
+  #   - table_translator@custom_phrase
+  #   - table_translator@custom_phrase_3_code
+  #   - table_translator@custom_phrase_kf
+  #   - table_translator@custom_phrase_mqzg
+  #   - table_translator@custom_phrase_super_1jian
+  #   - table_translator@custom_phrase_super_2jian
+  #   - table_translator@custom_phrase_super_3jian
+  #   - table_translator@custom_phrase_super_3jian_no_conflict
+  #   - table_translator@custom_phrase_super_4jian_no_conflict
+  #   - table_translator@emojis
+  #   - table_translator@easy_en_simp
+  #   - table_translator@jp_sela
+  #   - reverse_lookup_translator
+  #   - table_translator@reverse_moqima
+  #   - table_translator@radical_flypy
+  #   - table_translator@reverse_stroke
+  #   - table_translator@reverse_zrlf
+  #   - table_translator@reverse_cj
+  #   - script_translator
   speller/algebra/+:
     __include: aux_patch
 
@@ -147,8 +181,8 @@ key_binder:
     - { when: has_menu, accept: Shift+X, send_sequence: "{Shift+Right}x{Shift+Right}" }
     - { when: has_menu, accept: Shift+Y, send_sequence: "{Shift+Right}y{Shift+Right}" }
     - { when: has_menu, accept: Shift+Z, send_sequence: "{Shift+Right}z{Shift+Right}" }
-# 启用語言模型
-__include: moqi:/octagram/enable_for_sentence
+# A/B: no-octagram. Re-enable after measuring if language model cost is acceptable.
+# __include: moqi:/octagram/enable_for_sentence
 
 custom_phrase:
   dictionary: ""

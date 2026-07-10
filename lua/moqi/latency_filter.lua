@@ -1,6 +1,10 @@
 local state = require("moqi.latency_state")
 local M = {}
 
+local function profile_name(env)
+   return env.engine.schema.config:get_string("moqi_latency_probe/profile") or "baseline"
+end
+
 local function log_candidates(env, phase, candidates_seen)
    if not state.key_at or state.candidate_logged_for_key[phase] then
       return
@@ -20,7 +24,8 @@ local function log_candidates(env, phase, candidates_seen)
    end
 
    log.warning(string.format(
-      "moqi_latency: phase=%s seq=%d ms=%.3f core_ms=%.3f lua_ms=%.3f input_before=%s input_now=%s keycode=%d candidates_seen=%d",
+      "moqi_latency: profile=%s phase=%s seq=%d ms=%.3f core_ms=%.3f lua_ms=%.3f input_before=%s input_now=%s keycode=%d candidates_seen=%d",
+      profile_name(env),
       phase,
       state.key_seq or 0,
       elapsed_ms,

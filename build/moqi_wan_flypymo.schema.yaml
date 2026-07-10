@@ -3,11 +3,11 @@ __build_info:
   timestamps:
     default: 1782829324
     default.custom: 1780830105
-    moqi: 1783515343
+    moqi: 1783536287
     moqi.custom: 0
     moqi_speller: 1754065572
     moqi_speller.custom: 0
-    moqi_wan_flypymo.schema: 1783515349
+    moqi_wan_flypymo.schema: 1783707224
     symbols_caps_v: 1754065572
     symbols_caps_v.custom: 0
 add_user_dict:
@@ -28,7 +28,7 @@ add_user_dict:
   tips: "〔自造词〕"
   user_dict: user.custom.dict
 aux_lookup_filter:
-  debug: true
+  debug: false
 aux_patch:
   - "xform|^(.{2});(.*?);.*$|$1;$2|"
   - "xform|^(\\w+?);(.*?);.*$|$1;$2|"
@@ -159,12 +159,13 @@ emojis:
   tips: " Emoji"
 engine:
   filters:
+    - "lua_filter@*moqi.latency_filter_early"
     - "lua_filter@*pro_comment_format"
     - "lua_filter@*aux_lookup_filter"
     - "lua_filter@*stick"
     - "lua_filter@*is_in_user_dict"
     - "lua_filter@*moqi.jianma_show"
-    - "lua_filter@*moqi.latency_filter"
+    - "lua_filter@*moqi.latency_filter_late"
     - "reverse_lookup_filter@reverse_lookup"
     - "simplifier@emoji"
     - "simplifier@chaifen"
@@ -232,8 +233,7 @@ engine:
     - "script_translator@user_dict_set"
     - "script_translator@add_user_dict"
 grammar:
-  language: "zh-moqi"
-  non_collocation_penalty: "-4"
+  {}
 jp_sela:
   comment_format:
     - "xform/^.+$//"
@@ -333,11 +333,12 @@ menu:
   page_size: 6
 moqi_latency_probe:
   enabled: true
-  log_every: 50
-  threshold_ms: 10
+  log_every: 200
+  profile: "no-octagram-low-probe"
+  threshold_ms: 50
 moqi_profile:
-  enabled: true
-  log_every: 100
+  enabled: false
+  log_every: 200
   slow_ms: 2
 pro_comment_format:
   candidate_length: 1
@@ -788,14 +789,11 @@ traditionalize:
 translator:
   comment_format:
     {}
-  contextual_suggestions: true
+  contextual_suggestions: false
   dictionary: moqi_wan.extended
   enable_completion: false
   enable_user_dict: false
   initial_quality: 10000
-  max_homographs: 2
-  max_homophones: 4
-  max_sentences: 3
   prism: moqi_wan_flypymo
   spelling_hints: 10
 user_dict_set:

@@ -2,6 +2,10 @@ local rime = require("sbxlm.lib")
 local state = require("moqi.latency_state")
 local M = {}
 
+local function profile_name(env)
+   return env.engine.schema.config:get_string("moqi_latency_probe/profile") or "baseline"
+end
+
 local function log_commit(env, ctx)
    if not state.key_at then
       return
@@ -13,7 +17,8 @@ local function log_commit(env, ctx)
    end
 
    log.warning(string.format(
-      "moqi_latency: phase=commit seq=%d ms=%.3f input_before=%s input_now=%s keycode=%d text_len=%d",
+      "moqi_latency: profile=%s phase=commit seq=%d ms=%.3f input_before=%s input_now=%s keycode=%d text_len=%d",
+      profile_name(env),
       state.key_seq or 0,
       elapsed_ms,
       state.key_input or "",

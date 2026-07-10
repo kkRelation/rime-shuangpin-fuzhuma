@@ -3,9 +3,9 @@ __build_info:
   timestamps:
     default: 1782829324
     default.custom: 1780830105
-    moqi: 1783515343
+    moqi: 1783536287
     moqi.custom: 0
-    moqi_speller: 1754065571
+    moqi_speller: 1754065572
     moqi_speller.custom: 0
     moqi_wan_flypy.schema: 1783436128
     symbols_caps_v: 1754065572
@@ -156,12 +156,13 @@ emojis:
   tips: " Emoji"
 engine:
   filters:
+    - "lua_filter@*moqi.latency_filter_early"
     - "lua_filter@*pro_comment_format"
     - "lua_filter@*aux_lookup_filter"
     - "lua_filter@*stick"
     - "lua_filter@*is_in_user_dict"
     - "lua_filter@*moqi.jianma_show"
-    - "lua_filter@*moqi.latency_filter"
+    - "lua_filter@*moqi.latency_filter_late"
     - "reverse_lookup_filter@reverse_lookup"
     - "simplifier@emoji"
     - "simplifier@chaifen"
