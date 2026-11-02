@@ -1,0 +1,94 @@
+// ==============================================================================
+// VerySync (微力同步) 过滤规则 - rime-moqi-wanxiang-schemas
+// 策略: 保护双端 Rime 配置与核心词典；隔离 Weasel 单机二进制/LevelDB；过滤临时与独占状态
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. 小狼毫（Weasel）单机运行态与编译二进制（极高危：防 LevelDB 坏库与机器 ID 覆盖）
+// ------------------------------------------------------------------------------
+(?d)build
+(?d)*.userdb
+(?d)*.userdb.*
+(?d)installation.yaml
+(?d)user.yaml
+// 说明：保留 /sync 目录，通过小狼毫自带的「用户资料同步」安全合并双端词频
+
+// ------------------------------------------------------------------------------
+// 2. 评测缓存、临时/大体积词典与语言模型
+// ------------------------------------------------------------------------------
+(?d)node_modules
+(?d)cache
+(?d)trash
+(?d)cn_dicts_temp
+(?d)cn_dicts_dazhu
+(?d)cn_dicts_sancang
+(?d)cn_dicts_xh_cangjie
+(?d)sancang.dict.yaml
+(?d)*.gram
+(?d)*.bin
+(?d).worktrees
+(?d)*.zip
+
+// ------------------------------------------------------------------------------
+// 3. Python 运行环境与脚本检查缓存
+// ------------------------------------------------------------------------------
+(?d)__pycache__
+(?d)*.py[cod]
+(?d)*.nbc
+(?d)*.nbi
+(?d).ruff_cache
+(?d).pytest_cache
+(?d).mypy_cache
+(?d).venv
+(?d)venv
+
+// ------------------------------------------------------------------------------
+// 4. Git 仓库安全保护（排除锁与瞬态工作态）
+// ------------------------------------------------------------------------------
+**/.git/*.lock
+**/.git/index.lock
+**/.git/COMMIT_EDITMSG
+**/.git/TAG_EDITMSG
+**/.git/FETCH_HEAD
+**/.git/ORIG_HEAD
+**/.git/rebase-apply
+**/.git/rebase-merge
+.git/*.lock
+.git/index.lock
+.git/COMMIT_EDITMSG
+
+// ------------------------------------------------------------------------------
+// 5. 通用现代编辑器单机状态与本地临时文件隔离
+// ------------------------------------------------------------------------------
+// 1. Sublime Text
+(?d)*.sublime-workspace
+
+// 2. VS Code / Cursor / Zed / Helix / JetBrains / Visual Studio
+(?d).vscode/chrome
+(?d).vscode/ipch
+(?d).vscode/.browse.*
+(?d).vscode/*.log
+(?d).cursor/cache
+(?d).cursor/state
+(?d).zed/settings.local.json
+(?d).helix/*.local.toml
+(?d).helix/*.log
+(?d).idea
+(?d)*.suo
+(?d)*.user
+(?d)*.userosv
+(?d)*.sln.docstates
+
+// 3. Vim / 交换文件 / 临时文本 / Office 锁 / 同步工具临时标记
+(?d)*.swp
+(?d)*.swn
+(?d)*.swo
+(?d)*~
+(?d).netrwhist
+(?d)~$*
+(?d)*.tmp
+(?d)*.bak
+(?d)*.log
+(?d)sync.ffs_db
+(?d)*.ffs_db
+(?d)*.sync-conflict*
