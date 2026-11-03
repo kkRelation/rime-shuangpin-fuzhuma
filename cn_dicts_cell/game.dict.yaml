@@ -69745,7 +69745,7 @@ use_preset_vocabulary: false
 多头神魔	duo;xx;xx;xx;ff;ni;ll;qq;xx; tou;dd;dd;dd;hx;yk,xk;wm;ud;dd; shen;pu;pu;uu;hp;il;fg;py;pu; mo;gg;gg;gm,mg;ds,rs,rp,dp;ii;za;ys;gv;	0
 多闻天王	duo;xx;xx;xx;ff;ni;ll;qq;xx; wen;me;me;em,me;ou;lj;aq;ub;me; tian;ad;ad;ad;ue;mk;fm;gd;ad; wang;at;at;aa;aa;mg;nw;gg;at;	2
 恶虎	e;yx;yx;xy;dn;mp;fh;go;yx; hu;hj;hj;hj;pi;yn,yu;zh;ha;aj;	19
-峨嵋山	e;uw;ew;uw;pa;ui;vp;mt;sg; mei;uo;eo;um;ps;uu;vq;mn;sm; shan;kl;lk;aa;pp;uu;vs;mm;aa;	6
+峨眉山	e;uw;ew;uw;pa;ui;vp;mt;sg; mei;uo;vo;om,uo;rs,qs;au;cq;nh;vm; shan;kl;lk;aa;pp;uu;vs;mm;aa;	6
 恶魔泡泡	e;yx;yx;xy;dn;mp;fh;go;yx; mo;gg;gg;gm,mg;ds,rs,rp,dp;ii;za;ys;gv; pao;db;ds;db;kt;eu;kv;iq;dv; pao;db;ds;db;kt;eu;kv;iq;dv;	0
 二狗	er;aa;aa;aa;uu;mm;me;fg;aa; gou;qj;qk;qj;bi;kr;mg;qt;qk;	393
 二十一味清目丸	er;aa;aa;aa;uu;mm;me;fg;aa; shi;al;al;aa;ss;jj;ns;fg;aa; yi;aa;aa;aa;dd;mm;fi;g,gg;aa; wei;kw;kw;kw;oe;rd;da;kf;kw; qing;do;do;dq;kl;eb;kv;ig;do; mu;ke;ka;aa,om,mu;ss;bu;qm;hh;we; wan;jd;pd;jd,pd;uh;ki;ki;vy;pd;	0
@@ -74247,7 +74247,6 @@ use_preset_vocabulary: false
 大先易筋丸	da;ar;un;ad;xx;kk;md;dd;an; xian;ne;ne;ne,en;bk;hu;qp;tf;pe; yi;ow;ow;ow;vi,vu;ah;oe;jq;ow; jin;vl;vl;vl;nu;hs;rs;te;vl; wan;jd;pd;jd,pd;uh;ki;ki;vy;pd;	0
 跌打白药	die;zf;zu;zu;ge;ro;ph;kh;zu; da;fd;fd;fd;jj;qn;ua;rs;fd; bai;po;po;pa,po;ss;ha;ub;rr;po; yao;cu;cu;cy;zh;ti;li;ax;cu;	0
 东海蛟骨膏	dong;ax;ad;ad,qx;df,af;kd;ry;ai;ad; hai;dm;dm;dm;kh;ey;kk;it;dm; jiao;if;ix;ij;fy;lk;cb;ju;ix; gu;go;lo;go,ob,og;cc;bb;fg;me;ao; gao;wo;wo;og,ok,wo;il;yb;gv;yp;wo;	0
-峨嵋	e;uw;ew;uw;pa;ui;vp;mt;sg; mei;uo;eo;um;ps;uu;vq;mn;sm;	159
 恶人长不大	e;yx;yx;xy;dn;mp;fh;go;yx; ren;pn;pn;pd;ee;oo;jr;w,ww;pn; zhang;pn;pn;pd;uh;po;pc;ta;pn; bu;ab;ad;ad,ax;dh,df;mf;cb;i,gi;ad; da;ar;un;ad;xx;kk;md;dd;an;	0
 费彬	fei;fb;fr;bf,fb;rm;lo;to;xj;fr; bin;mp;mp;mu,pl;wu;dh;ee;ss;lp;	25
 飞针	fei;vd;vd;yd;rh;no,xo;cf;nu;vd; zhen;ju;ju;ju;ds;oj,xj;zn;qf;ju;	14
@@ -127653,8 +127652,8 @@ use_preset_vocabulary: false
 夺宝马贼白银宝箱	duo;dc;dc;dc,cd;xk;ki;mk;df;dc; bao;by;by;by;ia,ih;ji;wi;pg;gy; ma;va;va;aa,vh;zz;nm;nm;cn;va; zei;bu;ku;br;ms,ma,mh;bj;on;ma;bg; bai;po;po;pa,po;ss;ha;ub;rr;po; yin;jg;jg;jg;dh;ov;zi;qv;jh; bao;by;by;by;ia,ih;ji;wi;pg;gy; xiang;vo;vo;vx;ns;hu;rq;ts;vm;	0
 夺宝马贼黄金宝箱	duo;dc;dc;dc,cd;xk;ki;mk;df;dc; bao;by;by;by;ia,ih;ji;wi;pg;gy; ma;va;va;aa,vh;zz;nm;nm;cn;va; zei;bu;ku;br;ms,ma,mh;bj;on;ma;bg; huang;cb;cb;ad,cb;zf;tc;nh;am;cb; jin;rb;ra;ra,pa;ed,ef;cc;zj;qq;ra; bao;by;by;by;ia,ih;ji;wi;pg;gy; xiang;vo;vo;vx;ns;hu;rq;ts;vm;	0
 夺回礼物	duo;dc;dc;dc,cd;xk;ki;mk;df;dc; hui;kk;kk;kk;no;wr;rd;lk;wk; li;pv;pv;ug;hr;iu;fa;py;pv; wu;nw;nw;nw;bi,bu;hh;qe;tr;nw;	0
-峨嵋师姐	e;uw;ew;uw;pa;ui;vp;mt;sg; mei;uo;eo;um;ps;uu;vq;mn;sm; shi;lj;lj;ab,aj,db,dj;py;lb;pr;jg;aj; jie;nq;nq;nq;yu;vm;bf;ve;nq;	0
-峨嵋之争	e;uw;ew;uw;pa;ui;vp;mt;sg; mei;uo;eo;um;ps;uu;vq;mn;sm; zhi;dn;dn;dd;hh;io;ri;pp;dn; zheng;dy;dl;dy;gp;nd;xb;qv;ev;	0
+峨眉师姐	e;uw;ew;uw;pa;ui;vp;mt;sg; mei;uo;vo;om,uo;rs,qs;au;cq;nh;vm; shi;lj;lj;ab,aj,db,dj;py;lb;pr;jg;aj; jie;nq;nq;nq;yu;vm;bf;ve;nq;	0
+峨眉之争	e;uw;ew;uw;pa;ui;vp;mt;sg; mei;uo;vo;om,uo;rs,qs;au;cq;nh;vm; zhi;dn;dn;dd;hh;io;ri;pp;dn; zheng;dy;dl;dy;gp;nd;xb;qv;ev;	0
 鳄鱼珍兽蛋	e;yk;ak;ye,yk;qr;ns;wa;qg;ek; yu;da;da;da;qq;nm;wv;qg;ea; zhen;wp;wp;wp;au;mh;ne;gw;wp; shou;bk;bk;ka,bk;fo;cr;hd;ul;ek; dan;zi;vi;ip,pi;rf;ni;tc;nh;vi;	0
 二代百变汪仔	er;aa;aa;aa;uu;mm;me;fg;aa; dai;ry;ry;ry;xa,xh;op;jp;wa;rg; bai;ab;ab;ab;ds;ma;fu;dj;ab; bian;wy;wy;wy,yy;il;ye;zr;yo;wy; wang;dw;dw;dw;ka;eg;kn;ig;dw; zai;rz;rz;rz;xa;od;jh;wb;rz;	0
 二代豹子	er;aa;aa;aa;uu;mm;me;fg;aa; dai;ry;ry;ry;xa,xh;op;jp;wa;rg; bao;vu;vu;vu;uh;bi;mi;ee;pu; zi;la;va;aa,vh;aa;nd;hi;bb;va;	0
@@ -139232,8 +139231,8 @@ use_preset_vocabulary: false
 多感情怀	duo;xx;xx;xx;ff;ni;ll;qq;xx; gan;wx;xx,wx;xx;rn,hn;ip;nh;dg;kx; qing;xo;xo;xq;nl;pb;hv;ng;xo; huai;xb;xb;xb;nh,nf;pf;hc;ng;xb;	0
 堕落的暗	duo;et;et;td,ty;bg;ng,xg;tg;bd;et; luo;ck;ck;cl;zo;tr;ls;ai;ck; de;bu;bu,ib;bu;sh;hi,xx;ui;r,rq;bu; an;oo;oo;oy;vc,vv;aa;ox;ju;oo;	0
 夺命击	duo;dc;dc;dc,cd;xk;ki;mk;df;dc; ming;re;re;re;eb;ol;jz;wg;re; ji;fk;ak;aa,eu,fk;up;qu;um;fm;aa;	0
-峨嵋刺	e;uw;ew;uw;pa;ui;vp;mt;sg; mei;uo;eo;um;ps;uu;vq;mn;sm; ci;ud;ad;dc;di;dn;ep;gm;ad;	4
-峨嵋峰	e;uw;ew;uw;pa;ui;vp;mt;sg; mei;uo;eo;um;ps;uu;vq;mn;sm; feng;uf;ef;uf;pa;uj;va;mt;sf;	0
+峨眉刺	e;uw;ew;uw;pa;ui;vp;mt;sg; mei;uo;vo;om,uo;rs,qs;au;cq;nh;vm; ci;ud;ad;dc;di;dn;ep;gm;ad;	4
+峨眉峰	e;uw;ew;uw;pa;ui;vp;mt;sg; mei;uo;vo;om,uo;rs,qs;au;cq;nh;vm; feng;uf;ef;uf;pa;uj;va;mt;sf;	0
 娥女香	e;nw;nw;nw;ya;vi;bp;vt;ng; nv;va;va;aa,vh;yy;vv;bn;vv;va; xiang;ho;ho;ho;uv;ha;xo;tj;ho;	0
 厄咒霜	e;iv;iv;ie;rt;mu;xz;db;iv; zhou;kj;kj;kj,jk;oi;rn;do;kk;kj; shuang;yo;yo;yx;ys;mu;tq;fs;ym;	0
 洱海密林	er;de;de;de;ku;ej;kq;ib;de; hai;dm;dm;dm;kh;ey;kk;it;dm; mi;bu;be;ub,bu;ip;ju;wv;pn;gs; lin;mm;mm;mm;ww;dd;ee;ss;ll;	0

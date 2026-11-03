@@ -213,4 +213,5 @@ az部件组字模式使用的词典 <https://github.com/mirtlecn/rime-radical-pi
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=gaboolic/rime-shuangpin-fuzhuma&type=Date)](https://star-history.com/#gaboolic/rime-shuangpin-fuzhuma&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=gaboolic/rime-shuangpin-fuzhuma&type=Date)](https://star-history.dera.page/#gaboolic/rime-shuangpin-fuzhuma&Date)
+
