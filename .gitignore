@@ -7,7 +7,6 @@
 sancang.dict.yaml
 .DS_Store
 .antigravitycli/
-/build/
 
 # IDEA
 .idea/
@@ -27,6 +26,7 @@ sync/
 /installation.yaml
 
 # 用户词库(自动调频, 生成的文件)
+/user.custom.dict.txt
 *.userdb/
 *.userdb.*
 
