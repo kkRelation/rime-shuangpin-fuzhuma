@@ -6,39 +6,42 @@ local function profile_name(env)
 end
 
 local function log_candidates(env, phase, candidates_seen)
-   if not state.key_at or state.candidate_logged_for_key[phase] then
+   local session = env.moqi_latency_state
+   if not session or not session.key_at or session.candidate_logged_for_key[phase] then
       return
    end
 
-   local elapsed_ms = (os.clock() - state.key_at) * 1000
-   state.candidate_logged_for_key[phase] = true
-   state.candidate_elapsed_ms[phase] = elapsed_ms
-   if not state.should_log(env, elapsed_ms) then
+   local elapsed_ms = (os.clock() - session.key_at) * 1000
+   session.candidate_logged_for_key[phase] = true
+   session.candidate_elapsed_ms[phase] = elapsed_ms
+   if not state.should_log(env, session, elapsed_ms) then
       return
    end
 
-   local early_ms = state.candidate_elapsed_ms.candidates_early or elapsed_ms
+   local early_ms = session.candidate_elapsed_ms.candidates_early or elapsed_ms
    local lua_ms = 0
-   if phase == "candidates_late" and state.candidate_elapsed_ms.candidates_early then
-      lua_ms = elapsed_ms - state.candidate_elapsed_ms.candidates_early
+   if phase == "candidates_late" and session.candidate_elapsed_ms.candidates_early then
+      lua_ms = elapsed_ms - session.candidate_elapsed_ms.candidates_early
    end
 
    log.warning(string.format(
-      "moqi_latency: profile=%s phase=%s seq=%d ms=%.3f core_ms=%.3f lua_ms=%.3f input_before=%s input_now=%s keycode=%d candidates_seen=%d",
+      "moqi_latency: profile=%s phase=%s seq=%d ms=%.3f core_ms=%.3f lua_ms=%.3f input_before=%s input_now=%s keycode=%d candidates_seen=%d session=%s",
       profile_name(env),
       phase,
-      state.key_seq or 0,
+      session.key_seq or 0,
       elapsed_ms,
       early_ms,
       lua_ms,
-      state.key_input or "",
+      session.key_input or "",
       env.engine.context.input or "",
-      state.keycode or 0,
-      candidates_seen
+      session.keycode or 0,
+      candidates_seen,
+      session.id
    ))
 end
 
 function M.init(env)
+   env.moqi_latency_state = state.attach(env)
    local namespace = env.name_space or ""
    if namespace:match("early$") then
       env.moqi_latency_phase = "candidates_early"

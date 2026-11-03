@@ -5,7 +5,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 $rows = rg "moqi_latency:" "$LogDir" -g "*.WARNING.*.log" | ForEach-Object {
-  if ($_ -match 'moqi_latency: profile=(\S+) phase=(\S+) seq=(\d+) ms=([0-9.]+)(?: core_ms=([0-9.]+) lua_ms=([0-9.]+))? input_before=(.*?) input_now=(.*?) keycode=(\S+)(?: candidates_seen=(\d+)| text_len=(\d+))?') {
+  if ($_ -match 'moqi_latency: profile=(\S+) phase=(\S+) seq=(\d+) ms=([0-9.]+)(?: core_ms=([0-9.]+) lua_ms=([0-9.]+))? input_before=(.*?) input_now=(.*?) keycode=(\S+)(?: candidates_seen=(\d+)| text_len=(\d+))?(?: session=(\S+))?$') {
     [pscustomobject]@{
       Profile=$matches[1]
       Phase=$matches[2]
@@ -18,6 +18,7 @@ $rows = rg "moqi_latency:" "$LogDir" -g "*.WARNING.*.log" | ForEach-Object {
       Keycode=$matches[9]
       CandidatesSeen=if ($matches[10]) { [int]$matches[10] } else { $null }
       TextLen=if ($matches[11]) { [int]$matches[11] } else { $null }
+      Session=if ($matches[12]) { $matches[12] } else { "legacy-global" }
     }
   }
 }
@@ -38,6 +39,18 @@ function New-Stats($Items, $Field) {
 }
 
 "TOTAL new-format latency rows: $($rows.Count)"
+""
+"By profile and session:"
+$rows | Group-Object Profile, Session | ForEach-Object {
+  [pscustomobject]@{
+    Profile=$_.Group[0].Profile
+    Session=$_.Group[0].Session
+    Rows=$_.Count
+    FirstSeq=($_.Group | Measure-Object Seq -Minimum).Minimum
+    LastSeq=($_.Group | Measure-Object Seq -Maximum).Maximum
+  }
+} | Sort-Object Profile, Session | Format-Table -AutoSize
+
 ""
 "By profile and phase:"
 $rows | Group-Object Profile, Phase | ForEach-Object {
@@ -84,5 +97,5 @@ $rows | Where-Object Phase -eq "candidates_late" | Group-Object Profile | ForEac
 $rows |
   Where-Object Phase -eq "candidates_late" |
   Sort-Object Ms -Descending |
-  Select-Object -First 30 Profile,Seq,Ms,CoreMs,LuaMs,InputBefore,InputNow,Keycode,CandidatesSeen |
+  Select-Object -First 30 Profile,Session,Seq,Ms,CoreMs,LuaMs,InputBefore,InputNow,Keycode,CandidatesSeen |
   Format-Table -AutoSize
